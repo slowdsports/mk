@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/u4396178/irtvhn.info/v3/
+    - /bin/cp -R * $DEPLOYPATH
+    #- /bin/rsync -a --exclude 'conn.php' public/ $DEPLOYPATH
