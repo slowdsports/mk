@@ -35,11 +35,11 @@
         <?php } ?>
 
         <?php
-        $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='nfl'");
+        $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='american-football'");
         $totalGames = mysqli_num_rows($queryQty);
         if ($totalGames > 0) { ?>
         <div class="col-6 col-sm-4 col-md-3 mycard">
-            <a href="?p=eventos&tipo=american-football">
+            <a href="?p=eventos&tipo=american-football&liga=9464">
                 <div class="card product-card">
                     <div class="card-body">
                         <img width="48px" height="48px" src="../assets/img/nfl.svg" class="image" alt="product image">

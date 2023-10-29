@@ -106,7 +106,7 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
                     $totalGames = mysqli_num_rows($queryQty);
                     if ($totalGames > 0) { ?>
                     <li>
-                        <a href="?p=eventos&basketball=" class="item">
+                        <a href="?p=eventos&tipo=basketball" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="basketball-outline" role="img" class="md hydrated"
                                     aria-label="basketball outline"></ion-icon>
@@ -120,11 +120,11 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
                     <?php } ?>
 
                     <?php
-                    $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='nfl'");
+                    $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='american-football'");
                     $totalGames = mysqli_num_rows($queryQty);
                     if ($totalGames > 0) { ?>
                     <li>
-                        <a href="?p=eventos&tipo=american-football" class="item">
+                        <a href="?p=eventos&tipo=american-football&liga=9464" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="american-football-outline" role="img" class="md hydrated"
                                     aria-label="american football outline"></ion-icon>
