@@ -75,6 +75,7 @@ $ligaNombre = $result['ligaNombre'];
                 $tipo = $result['tipo'];
                 $starp = $result['starp'];
                 $vix = $result['vix'];
+                $custId = getCustomLink($index);
                 // Channels Image
                 $ciSearch = $result['canal_canal1'];
                 if ($ciSearch == null || $ciSearch == "") {
@@ -101,6 +102,12 @@ $ligaNombre = $result['ligaNombre'];
                         $canalImg = "starplus";
                     } elseif ($result['vix'] == 1) {
                         $canalImg = "vix";
+                    } elseif ($custId != null) {
+                        if ($tipo == "american-football") {
+                            $canalImg = "nfl";
+                        } else {
+                            $canalImg = "nbalp";
+                        }
                     }
                 }
                 // Default
