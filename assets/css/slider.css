@@ -1,0 +1,94 @@
+.main-event {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    }
+
+    .item:hover , .card:hover , .main-event:hover , .match:hover , .vs:hover , .counter:hover{
+        color: #ffffff;
+    }
+
+    .main-event .league img {
+    min-width: 3%;
+    max-width: 48px;
+    }
+
+    .league {
+        display: flex;
+        margin-left: 2%;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .mini-league {
+        display: flex;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .mini-league img {
+        width: 25px!important;
+    }
+
+    .mini-league h5 {
+        height: 25px;
+        margin: 0 5px;
+        margin-top: 5px;
+    }
+
+    .match {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    text-decoration: none;
+    }
+
+    .match .vs {
+        text-decoration: none;
+    }
+
+    .match h4 {
+        font-size: 12px;
+    }
+
+    .team img {
+    min-width: 3%;
+    max-width: 48px;
+    }
+
+    .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    }
+
+    .vs {
+    margin: 0 auto;
+    }
+
+    .match h4 {
+    margin-top: 2%;
+    }
+
+    .match h6 {
+    font-size: 1rem;
+    }
+    .counter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .live-text .animated {
+        color: red;
+    }
