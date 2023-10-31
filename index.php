@@ -12,7 +12,7 @@ include('../inc/conn.php');
 // Header
 include('inc/header.php');
 ?>
-<div id="appCapsule">
+<div class="container" id="appCapsule">
     <?php
     if (isset($_SESSION['message'])) { ?>
         <script>

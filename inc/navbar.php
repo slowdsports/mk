@@ -342,7 +342,10 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
 <script src="assets/js/plugins/jquery-circle-progress/circle-progress.min.js"></script>
 <!-- Base Js File -->
 <script src="assets/js/base.js"></script>
+<?php if (isset($_GET['p']) && $_GET['p'] == "iptv"){
+} else {?>
 <script src="assets/js/filter.js"></script>
+<?php } ?>
 
 
 <script>

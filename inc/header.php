@@ -84,7 +84,11 @@
             iRaffle TV
         </div>
         <div class="right">
-            <a href="javascript:;" class="headerButton toggle-searchbox">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input dark-mode-switch" id="darkmodeswitch">
+                <label class="custom-control-label" for="darkmodeswitch"></label>
+            </div>
+            <a href="javascript:;" class="hidden headerButton toggle-searchbox">
                 <ion-icon name="search-outline"></ion-icon>
             </a>
         </div>
@@ -93,7 +97,7 @@
     <?php
     } else { ?>
     <!-- App Header -->
-    <div class="appHeader bg-primary text-light">
+    <div class="appHeader bg-primary scrolled text-light">
         <div class="left">
             <a href="javascript:;" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
@@ -103,9 +107,13 @@
             <?= ucfirst($_GET['p']) ?>
         </div>
         <div class="right">
-            <a href="?p=cuenta" class="headerButton">
+            <a href="?p=cuenta" class="hidden headerButton">
                 <ion-icon name="people-outline"></ion-icon>
             </a>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input dark-mode-switch" id="darkmodeswitch">
+                <label class="custom-control-label" for="darkmodeswitch"></label>
+            </div>
         </div>
     </div>
     <!-- * App Header -->
