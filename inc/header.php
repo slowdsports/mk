@@ -28,7 +28,7 @@
 
     <?php
     // Evitar la carga del header
-    if (isset($_GET['p']) && $_GET['p'] == "login" ) {} else { ?>
+    if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET["p"] == "iptv" ) {} else { ?>
 
     <?php if (isset($_GET["p"]) && $_GET["p"] == "tv") { ?>
     <!-- App Header -->
