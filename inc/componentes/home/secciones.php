@@ -149,6 +149,23 @@
         <?php } ?>
 
         <?php
+        $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='ice-hockey'");
+        $totalGames = mysqli_num_rows($queryQty);
+        if ($totalGames > 0) { ?>
+        <div class="col-6 col-sm-4 col-md-3 mycard">
+            <a href="?p=eventos&tipo=ice-hockey&liga=234">
+                <div class="card product-card">
+                    <div class="card-body">
+                        <img width="48px" height="48px" src="../assets/img/tenis.svg" class="image" alt="product image">
+                        <h2 class="title text-center">NHL</h2>
+                        <p class="text text-center">GRATIS</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <?php } ?>
+
+        <?php
         $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='handball'");
         $totalGames = mysqli_num_rows($queryQty);
         if ($totalGames > 0) { ?>
