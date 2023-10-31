@@ -156,7 +156,7 @@
             <a href="?p=eventos&tipo=ice-hockey&liga=234">
                 <div class="card product-card">
                     <div class="card-body">
-                        <img width="48px" height="48px" src="../assets/img/tenis.svg" class="image" alt="product image">
+                        <img width="48px" height="48px" src="../assets/img/nhl.svg" class="image" alt="product image">
                         <h2 class="title text-center">NHL</h2>
                         <p class="text text-center">GRATIS</p>
                     </div>
