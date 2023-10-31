@@ -25,6 +25,11 @@
         <div class="spinner-border text-primary" role="status"></div>
     </div>
     <!-- * loader -->
+    <!-- top -->
+    <a href="#" class="button goTop show">
+        <ion-icon name="arrow-up-outline" role="img" class="md hydrated" aria-label="arrow up outline"></ion-icon>
+    </a>
+    <!-- * top -->
 
     <?php
     // Evitar la carga del header

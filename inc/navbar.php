@@ -30,9 +30,14 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
             <span class="badge badge-danger">5</span>
         </div>
     </a>
-    <a href="?p=tv" class="item <?= ($_GET['p'] == "tv" ? "active" : "") ?>">
+    <a href="?p=tv" class="item <?= ($_GET['p'] == "tv" || $_GET['p'] == "iptv"  ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="tv-outline"></ion-icon>
+        </div>
+    </a>
+    <a href="?p=radio" class="item <?= ($_GET['p'] == "radio" ? "active" : "") ?>">
+        <div class="col">
+            <ion-icon name="radio-outline"></ion-icon>
         </div>
     </a>
     <a href="?p=cuenta" class="item <?= ($_GET['p'] == "cuenta" ? "active" : "") ?>">
@@ -223,6 +228,16 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
                         </a>
                     </li>
                     <?php } ?>
+                    <li>
+                        <a href="?p=radio" class="item">
+                            <div class="icon-box bg-primary disabled">
+                                <i class="mdi mdi-radio"></i>
+                            </div>
+                            <div class="in">
+                                <div>Radio</div>
+                            </div>
+                        </a>
+                    </li>
                     <li>
                         <a href="https://t.me/+uyWDSC69RzFlNWE5" class="item">
                             <div class="icon-box bg-primary">

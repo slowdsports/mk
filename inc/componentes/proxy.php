@@ -1,6 +1,10 @@
 <?php
 // URL del servidor remoto que contiene el JSON de los canales
-$remoteUrl = "https://www.tdtchannels.com/lists/tv.json";
+if ($_GET['p'] == 'iptv') {
+    $remoteUrl = "https://www.tdtchannels.com/lists/tv.json";
+} else {
+    $remoteUrl = "https://www.tdtchannels.com/lists/radio.json";
+}
 
 // Hacer la solicitud al servidor remoto
 $response = file_get_contents($remoteUrl);

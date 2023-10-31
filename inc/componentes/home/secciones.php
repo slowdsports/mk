@@ -63,6 +63,18 @@
             </a>
         </div>
 
+        <div class="col-6 col-sm-4 col-md-3 mycard">
+            <a href="?p=radio">
+                <div class="card product-card">
+                    <div class="card-body">
+                        <img width="48px" height="48px" src="../assets/img/radio.svg" class="image" alt="product image">
+                        <h2 class="title text-center">Radio</h2>
+                        <p class="text text-center">GRATIS</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
         <?php
         $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='baseball'");
         $totalGames = mysqli_num_rows($queryQty);
