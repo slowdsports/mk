@@ -173,6 +173,23 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
                     <?php } ?>
 
                     <?php
+                    $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='ice-hockey'");
+                    $totalGames = mysqli_num_rows($queryQty);
+                    if ($totalGames > 0) { ?>
+                    <li>
+                        <a href="?p=eventos&tipo=ice-hockey&liga=234" class="item">
+                            <div class="icon-box bg-primary">
+                                <i class="mdi mdi-hockey-sticks" aria-hidden="true"></i>
+                            </div>
+                            <div class="in">
+                                <div>NHL</div>
+                                <span class="badge badge-danger"><?=$totalGames?></span>
+                            </div>
+                        </a>
+                    </li>
+                    <?php } ?>
+
+                    <?php
                     $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='handball'");
                     $totalGames = mysqli_num_rows($queryQty);
                     if ($totalGames > 0) { ?>
