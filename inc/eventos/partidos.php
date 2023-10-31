@@ -105,6 +105,8 @@ $ligaNombre = $result['ligaNombre'];
                     } elseif ($custId != null) {
                         if ($tipo == "american-football") {
                             $canalImg = "nfl";
+                        } elseif ($tipo == "ice-hockey") {
+                            $canalImg = "nhl";
                         } else {
                             $canalImg = "nbalp";
                         }
