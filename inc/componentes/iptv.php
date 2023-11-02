@@ -153,6 +153,7 @@
                         sourcesSelect.classList.add('hidden');
                         player = document.getElementById("player");
                         var twitchIframe = document.createElement('iframe');
+                        twitchIframe.setAttribute('allowFullScreen', '');
                         twitchIframe.src = twitchSource.file + "&parent=127.0.0.1&parent=irtvhn.info";
                         twitchIframe.width = '100%';
                         twitchIframe.height = '100%';
@@ -167,10 +168,10 @@
                         sourcesSelect.classList.add('hidden');
                         player = document.getElementById("player");
                         var youtubeIframe = document.createElement('iframe');
-                        youtubeIframe.src = youtubeSource.file; // La URL de YouTube debe ser la URL embebida del video
+                        youtubeIframe.src = youtubeSource.file;
                         youtubeIframe.width = '100%';
                         youtubeIframe.height = '100%';
-                        youtubeIframe.allowfullscreen = true; // Permite que el iframe se expanda a pantalla completa
+                        youtubeIframe.setAttribute('allowFullScreen', '');
                         player.appendChild(youtubeIframe);
                     }
                     else {
