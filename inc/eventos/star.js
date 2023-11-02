@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 .join("&");
 
             var partesURL = urlEncriptada.split("&");
-            var primeraParte = partesURL[0];
             var proxy = "https://slowdus.herokuapp.com/"
+            var primeraParte = proxy + partesURL[0];
             var primeraParteEncriptada = btoa(primeraParte+proxy);
             urlEncriptada = urlEncriptada.replace(primeraParte, primeraParteEncriptada);
 
