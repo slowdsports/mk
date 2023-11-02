@@ -144,6 +144,10 @@
                         return source.label === "youtube";
                     });
                     if (twitchSource) {
+                        issetFrame =document.querySelector('iframe');
+                        if (issetFrame != null) {
+                            issetFrame.remove();
+                        }
                         player = jwplayer('player');
                         player.remove();
                         sourcesSelect.classList.add('hidden');
@@ -154,6 +158,10 @@
                         twitchIframe.height = '100%';
                         player.appendChild(twitchIframe);
                     } else if (youtubeSource) {
+                        issetFrame =document.querySelector('iframe');
+                        if (issetFrame != null) {
+                            issetFrame.remove();
+                        }
                         player = jwplayer('player');
                         player.remove();
                         sourcesSelect.classList.add('hidden');
