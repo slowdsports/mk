@@ -149,7 +149,7 @@
                         sourcesSelect.classList.add('hidden');
                         player = document.getElementById("player");
                         var twitchIframe = document.createElement('iframe');
-                        twitchIframe.src = twitchSource.file + "&parent=127.0.0.1";
+                        twitchIframe.src = twitchSource.file + "&parent=127.0.0.1&parent=irtvhn.info";
                         twitchIframe.width = '100%';
                         twitchIframe.height = '100%';
                         player.appendChild(twitchIframe);
