@@ -78,7 +78,7 @@
         sourcesSelect.classList.add('hidden');
 
         // Obtener datos JSON a través del servidor PHP
-        fetch("inc/componentes/proxy.php")
+        fetch("inc/componentes/proxy.php?p=iptv")
             .then(function (response) {
                 return response.json();
             })
