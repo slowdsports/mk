@@ -62,9 +62,12 @@
 
                         var partesURL = urlEncriptada.split("&");
                         var proxy = "https://slowdus.herokuapp.com/"
-                        var primeraParte = proxy + partesURL[0];
-                        var primeraParteEncriptada = btoa(primeraParte);
+                        var primeraParte = partesURL[0];
+                        console.log(primeraParte)
+                        var primeraParteEncriptada = btoa(proxy + primeraParte);
+                        console.log(primeraParteEncriptada)
                         urlEncriptada = urlEncriptada.replace(primeraParte, primeraParteEncriptada);
+                        console.log(urlEncriptada)
 
                         return urlEncriptada;
                     }
