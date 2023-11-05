@@ -50,7 +50,7 @@
             Televisión
         </div>
         <div class="right">
-            <div class="dropdown">
+            <div id="category-select" class="dropdown">
                 <a class="headerButton dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                     <ion-icon name="funnel-outline"></ion-icon>
                 </a>

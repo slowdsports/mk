@@ -1,7 +1,7 @@
 // PAIS
 
 $(document).ready(function () {
-    $("#channelSearch").on("keyup", function () {
+    $("#filtroInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         $("#channelsList div").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
@@ -11,14 +11,14 @@ $(document).ready(function () {
 
 // PAÍS
 
-$(document).ready(function () {
-    $("#countrySearch").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#countryList div").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-        });
-    });
-});
+// $(document).ready(function () {
+//     $("#countrySearch").on("keyup", function () {
+//         var value = $(this).val().toLowerCase();
+//         $("#countryList div").filter(function () {
+//             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+//         });
+//     });
+// });
 
 // CATEGORIA
 
@@ -83,40 +83,40 @@ cards.forEach((card) => {
 });
 
 // Toggle adult channels
-adultToggle.addEventListener('change', () => {
-const showAdultChannels = adultToggle.checked;
+// adultToggle.addEventListener('change', () => {
+// const showAdultChannels = adultToggle.checked;
 
-if (showAdultChannels) {
-    localStorage.setItem('showAdultChannels', true);
-    cards.forEach((card) => {
-    if (card.classList.contains('adult')) {
-        card.style.display = 'block';
-    }
-    });
-} else {
-    localStorage.setItem('showAdultChannels', false);
-    cards.forEach((card) => {
-    if (card.classList.contains('adult')) {
-        card.style.display = 'none';
-    }
-    });
-}
-});
+// if (showAdultChannels) {
+//     localStorage.setItem('showAdultChannels', true);
+//     cards.forEach((card) => {
+//     if (card.classList.contains('adult')) {
+//         card.style.display = 'block';
+//     }
+//     });
+// } else {
+//     localStorage.setItem('showAdultChannels', false);
+//     cards.forEach((card) => {
+//     if (card.classList.contains('adult')) {
+//         card.style.display = 'none';
+//     }
+//     });
+// }
+// });
 
 // Check for user preference on page load
-const showAdultChannels = localStorage.getItem('showAdultChannels');
-if (showAdultChannels === 'true') {
-adultToggle.checked = true;
-cards.forEach((card) => {
-    if (card.classList.contains('adult')) {
-    card.style.display = 'block';
-    }
-});
-} else {
-adultToggle.checked = false;
-cards.forEach((card) => {
-    if (card.classList.contains('adult')) {
-    card.style.display = 'none';
-    }
-});
-}
+// const showAdultChannels = localStorage.getItem('showAdultChannels');
+// if (showAdultChannels === 'true') {
+// adultToggle.checked = true;
+// cards.forEach((card) => {
+//     if (card.classList.contains('adult')) {
+//     card.style.display = 'block';
+//     }
+// });
+// } else {
+// adultToggle.checked = false;
+// cards.forEach((card) => {
+//     if (card.classList.contains('adult')) {
+//     card.style.display = 'none';
+//     }
+// });
+// }

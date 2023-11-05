@@ -18,25 +18,16 @@
                 </a>
             </div>
             <?php
-            function mostrarCanalesFromJson($jsonData, $categoriaFiltro = null, $limit = null)
+            function mostrarCanales($query)
             {
-                $canales = json_decode($jsonData, true);
-                $count = 0;
-                foreach ($canales as $canal) {
-                    if ($categoriaFiltro && $canal['categoriaNombre'] !== $categoriaFiltro) {
-                        continue;
-                    }
-
-                    // Verificar el límite de canales a mostrar
-                    if ($limit && $count >= $limit) {
-                        break;
-                    }
-
-                    $canalId = $canal['canal'];
-                    $fuenteId = $canal['fuenteId'];
-                    $canalImg = $canal['canalImg'];
-                    $canalNombre = $canal['fuenteNombre'];
-                    $canalCategoria = $canal['canalCategoria'];
+                global $conn;
+                $channels = mysqli_query($conn, $query);
+                while ($result = mysqli_fetch_assoc($channels)) {
+                    $canalId = $result['canalId'];
+                    $fuenteId = $result['fuenteId'];
+                    $canalImg = $result['canalImg'];
+                    $canalNombre = $result['fuenteNombre'];
+                    $canalCategoria = $result['canalCategoria'];
                     ?>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 mycard <?= $canalCategoria ?>"
                         data-category="<?= $canalCategoria ?>">
@@ -55,19 +46,25 @@
                             </div>
                         </a>
                     </div>
-                    <?php
-                    $count++;
-                }
-            }
-            // Sección de Canales
-            // Leer datos desde el archivo JSON
-            $jsonData = file_get_contents('../canales.json');
-
+                <?php }
+            } ?>
+            <?php
             // Sección de Canales
             if (isset($_GET['p']) && $_GET['p'] == "tv") {
-                mostrarCanalesFromJson($jsonData);
+                $query = "SELECT canales.canalId, canales.canalNombre, canales.epg, canales.canalImg, canales.canalCategoria, fuentes.fuenteId, fuentes.fuenteNombre, fuentes.canalUrl, fuentes.key, fuentes.key2, fuentes.pais, fuentes.tipo, categorias.categoriaNombre
+        FROM canales
+        INNER JOIN fuentes ON canales.canalId = fuentes.canal
+        INNER JOIN categorias ON canales.canalCategoria = categorias.categoriaId";
+                mostrarCanales($query);
             } else {
-                mostrarCanalesFromJson($jsonData, 'Deportes', 18);
+                $query = "SELECT canales.canalId, canales.canalNombre, canales.epg, canales.canalImg, canales.canalCategoria, fuentes.fuenteId, fuentes.fuenteNombre, fuentes.canalUrl, fuentes.key, fuentes.key2, fuentes.pais, fuentes.tipo, categorias.categoriaNombre
+        FROM canales
+        INNER JOIN fuentes ON canales.canalId = fuentes.canal
+        INNER JOIN categorias ON canales.canalCategoria = categorias.categoriaId
+        WHERE canales.canalCategoria = 11
+        ORDER BY RAND()
+        LIMIT 18";
+                mostrarCanales($query);
             }
             ?>
         </div>
