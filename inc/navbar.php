@@ -1,8 +1,11 @@
 <?php
 // Evitar la carga del navbar
-if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones" ) {} else { ?>
+if (isset($_GET['p']) && $_GET['p'] == "notificaciones" ) {}
+else {
+    (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "error" ? $hiddeElements = "hidden" : "");
+?>
 <!-- app footer -->
-<div class="appFooter">
+<div class="<?=$hiddeElements?> appFooter">
     <img id="iconFooter" src alt="icon" class="footer-logo mb-2">
     <div class="footer-title">
         Copyright © iRaffle TV <?= date('Y') ?>. Derechos Reservados.
@@ -13,7 +16,7 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
 <br><br>
 <!-- * app footer -->
 <!-- App Bottom Menu -->
-<div class="appBottomMenu">
+<div class="<?=$hiddeElements?> appBottomMenu">
     <a href="?p=home" class="item <?= (!isset($_GET['p']) || $_GET['p'] == "home" ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="home-outline"></ion-icon>
@@ -357,8 +360,7 @@ if (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "notificaciones"
 <script src="assets/js/plugins/jquery-circle-progress/circle-progress.min.js"></script>
 <!-- Base Js File -->
 <script src="assets/js/base.js"></script>
-<?php if (isset($_GET['p']) && $_GET['p'] == "iptv"){
-} else {?>
+<?php if (isset($_GET['p']) && $_GET['p'] == "iptv"){} else {?>
 <script src="assets/js/filter.js"></script>
 <?php } ?>
 

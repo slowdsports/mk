@@ -78,7 +78,6 @@ if (isset($_GET['title'])) {
 </style>
 <section class="container mb-5 pt-4 pb-2 py-mg-4">
     <div class="row gy-4">
-
         <!-- Content -->
         <div class="col-lg-9">
             <!-- Reproductor -->

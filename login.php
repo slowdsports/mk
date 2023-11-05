@@ -4,21 +4,23 @@ ini_set('display_errors', '0');
 session_start();
 // Código para cerrar sesión
 if ($_GET['do'] == "logout") {
-    $_SESSION['message'] = "Has cerrado sesión satisfactoriamente. Esperamos verte pronto nuevamente";
-    $_SESSION['messageColor'] = "#4044ee";
     // Destruir todas las variables de sesión
     session_destroy();
-    header("Location: ?p=home&logout=success");
     // Eliminar las cookies de usuario
     setcookie("usuario_id", "", time() - 3600, "/");
     setcookie("usuario_rol", "", time() - 3600, "/");
+    $_SESSION['message'] = "Has cerrado sesión satisfactoriamente. Esperamos verte pronto nuevamente";
+    $_SESSION['messageColor'] = "#4044ee";
+    header("Location: ?p=home&logout=success");
     exit();
 
 }
 // Redirigir si ya hay sesión
 if (isset($_SESSION['usuario_id'])) {
     $_SESSION['message'] = "Ya has iniciado sesión previamente";
+    $_SESSION['messageColor'] = "#4044ee";
     header("Location: ?p=cuenta");
+    exit();
 }
 ?>
 <?php if ($_GET['do'] == "registro") { ?>
