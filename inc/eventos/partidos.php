@@ -78,7 +78,6 @@ $ligaNombre = $result['ligaNombre'];
                 $starp = $result['starp'];
                 $vix = $result['vix'];
                 $custId = getCustomLink($index);
-                echo "HBO: " . $result['hbo'];
                 // Channels Image
                 $ciSearch = $result['canal_canal1'];
                 if ($ciSearch == null || $ciSearch == "") {
