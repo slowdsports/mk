@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 include('../inc/conn.php');
 
-if(!isset($_SESSION['usuario_id']) || !isset($_COOKIE['usuario_id']) ) {
+if(!isset($_COOKIE['usuario_id']) ) {
     $_SESSION['message'] = "Por favor inicia sesión para acceder al contenido.";
     $_SESSION['messageColor'] = "#dc3545";
     header("Location: ?p=login");

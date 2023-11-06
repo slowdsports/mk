@@ -4,6 +4,11 @@
 // ini_set('display_errors', '1');
 // BD
 include('../inc/conn.php');
+include('inc/geoplugin.php');
+$geoplugin = new geoPlugin();
+$geoplugin->locate();
+$ciudad = $geoplugin->city;
+$pais = $geoplugin->countryName;
 session_start();
 // Verificar cookies
 if (isset($_COOKIE['usuario_id'])) {
