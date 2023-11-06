@@ -18,9 +18,8 @@ if (isset($_COOKIE['usuario_id'])) {
 // Guardar referer
 if ($_GET['p'] !== "login") {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
-    echo $_SESSION['redirect_url'];
 }
-if (isset($_GET['p']) && $_GET['p'] == "tv" && isset($_GET['c']) || isset($_GET['evento']) || isset($_GET['r']) || isset($_GET['f'])) {
+if (isset($_GET['p']) && $_GET['p'] == "tv" && isset($_GET['c']) || isset($_GET['evento']) || isset($_GET['r']) || isset($_GET['s']) || isset($_GET['f'])) {
     include('play.php');
     exit();
 }
