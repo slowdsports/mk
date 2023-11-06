@@ -1,42 +1,28 @@
 <!-- App Capsule -->
 <?php
-session_start();
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 // BD
 include('../inc/conn.php');
+session_start();
+// Verificar cookies
+if (isset($_COOKIE['usuario_id'])) {
+    $usuario_id = $_COOKIE['usuario_id'];
+    $query = mysqli_query($conn,"SELECT id, nombre, rol_id FROM usuarios WHERE id = '$usuario_id'");
+    $usuario = mysqli_fetch_assoc($query);
+    // Establecer las cookies nuevamente con una duración extendida de 7 días más
+    setcookie("usuario_id", $_COOKIE['usuario_id'], time() + (86400 * 7), "/");
+    setcookie("usuario_nombre", $_COOKIE['usuario_nombre'], time() + (86400 * 7), "/");
+    setcookie("usuario_rol", $_COOKIE['usuario_rol'], time() + (86400 * 7), "/");
+}
 // Guardar referer
 if ($_GET['p'] !== "login") {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    echo $_SESSION['redirect_url'];
 }
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
 if (isset($_GET['p']) && $_GET['p'] == "tv" && isset($_GET['c']) || isset($_GET['evento']) || isset($_GET['r']) || isset($_GET['f'])) {
-    // Validar sesión
-    if (isset($_SESSION['usuario_id']) || isset($_COOKIE['usuario_id'])) {
-        // Validar suscripción
-        $usuario_id = $_SESSION['usuario_id'];
-        $query = mysqli_query($conn,"SELECT id, suscripcion FROM usuarios WHERE id = '$usuario_id'");
-        $result = mysqli_fetch_assoc($query);
-        $suscripcion = new DateTime($result['suscripcion']);
-        $actual = new DateTime();
-        $restante = $actual -> diff($suscripcion);
-        $validez = $restante->days;
-        if ($validez > 0){
-            $_SESSION['message'] = "Tienes " . $validez . " días restantes de tu suscripción";
-            ($validez <= 12 ? $_SESSION['messageColor'] = "#ef4444" : $_SESSION['messageColor'] = "#007bff");
-            include('play.php');
-            exit();
-        } else {
-            $_SESSION['message'] = "Debes tener una suscripción activa para acceder a esta sección";
-            $_SESSION['messageColor'] = "#ef4444";
-            $hiddeElements = "hidden";
-            include("error.php");
-        }
-    } else {
-        $_SESSION['message'] = "Inicia sesión para acceder a este canal";
-        $_SESSION['messageColor'] = "#ef4444";
-        header("Location: ?p=login");
-        exit();
-    }
+    include('play.php');
+    exit();
 }
 // Header
 include('inc/header.php');

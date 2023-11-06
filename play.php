@@ -1,30 +1,14 @@
 <?php
-session_start();
-// Verificar Sesión
-if (isset($_SESSION["usuario_id"]) && $_SESSION["usuario_id"] !== "") {
-    $userId = $_SESSION['usuario_id'];
-    include('../inc/conn.php');
-    // Obtener Suscripción
-    $queryUsuario = mysqli_query($conn, "SELECT id, suscripcion FROM usuarios WHERE id=$userId");
-    $usuario = mysqli_fetch_array($queryUsuario);
-    // Verificar
-    if ($usuario['suscripcion'] !== null || $usuario['suscripcion'] !== "") {
-        // El usuario tiene suscripción activa
-        $futuro = strtotime($usuario['suscripcion']);
-        $presente = time();
-        $left = $futuro - $presente;
-        $daysleft = round((($left / 24) / 60) / 60);
-        // Validar suscripción
-        if (-$daysleft > 0) {
-            $_SESSION['message'] = "Tu suscripción ha vencido hace " . -$daysleft . " días.";
-            header("Location: ?p=suscribir");
-            exit();
-        }
-    }
-}
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 include('../inc/conn.php');
+
+if(!isset($_SESSION['usuario_id']) || !isset($_COOKIE['usuario_id']) ) {
+    $_SESSION['message'] = "Por favor inicia sesión para acceder al contenido.";
+    $_SESSION['messageColor'] = "#dc3545";
+    header("Location: ?p=login");
+    exit();
+} else {}
 if (isset($_GET['c'])) {
     $canal = $_GET['c'];
     $canalTipo;
