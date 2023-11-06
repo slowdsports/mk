@@ -4,12 +4,25 @@
 // ini_set('display_errors', '1');
 // BD
 include('../inc/conn.php');
-include('inc/geoplugin.php');
-$geoplugin = new geoPlugin();
-$geoplugin->locate();
-$ciudad = $geoplugin->city;
-$pais = $geoplugin->countryName;
 session_start();
+// IP + País
+if (!isset($_SESSION['ip'])) {
+    $jsonResponse = file_get_contents("https://directory.cookieyes.com/api/v1/ip");
+    $data = json_decode($jsonResponse, true);
+    $ip = $data['ip'];
+    $country = $data['country'];
+    $country_name = $data['country_name'];
+    $region_code = $data['region_code'];
+    $_SESSION['ip'] = $ip;
+    $_SESSION['country'] = $country;
+    $_SESSION['country_name'] = $country_name;
+    $_SESSION['region_code'] = $region_code;
+} else {
+    $ip = $_SESSION['ip'];
+    $country = $_SESSION['country'];
+    $country_name = $_SESSION['country_name'];
+    $region_code = $_SESSION['region_code'];
+}
 // Verificar cookies
 if (isset($_COOKIE['usuario_id'])) {
     $usuario_id = $_COOKIE['usuario_id'];

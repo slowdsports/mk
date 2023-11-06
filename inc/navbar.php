@@ -71,7 +71,8 @@ else {
                         <strong><?= ucfirst($_SESSION['usuario_nombre']) ?></strong>
                         <div class="text-muted">
                             <ion-icon name="location"></ion-icon>
-                            California
+                            <i class="flag <?= strtolower($country) ?>"></i>
+                            <?= $country_name ?> (<?= $region_code ?>)
                         </div>
                     </div>
                     <a href="javascript:;" class="close-sidebar-button" data-dismiss="modal">

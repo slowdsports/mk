@@ -1,3 +1,4 @@
+<?php  if (isset($country) && $country == "ES") { $proxy = "https://slowdus.herokuapp.com/"; } else { $proxy = ""; } ?>
 <div class="section mt-2">
     <h2>Star+ <small>Eventos Programados</small></h2>
     <div id="eventos" class="row row-cols-2 row-cols-sm-2 row-cols-lg-3 gx-3 gx-md-4 mt-n2 mt-sm-0">
@@ -61,7 +62,7 @@
                             .join("&");
 
                         var partesURL = urlEncriptada.split("&");
-                        var proxy = "https://slowdus.herokuapp.com/"
+                        var proxy = "<?= $proxy ?>";
                         var primeraParte = partesURL[0];
                         console.log(primeraParte)
                         var primeraParteEncriptada = btoa(proxy + primeraParte);
