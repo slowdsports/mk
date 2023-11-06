@@ -8,7 +8,20 @@ if(!isset($_COOKIE['usuario_id']) ) {
     $_SESSION['messageColor'] = "#dc3545";
     header("Location: ?p=login");
     exit();
-} else {}
+} else {
+    $idCookie = $_COOKIE['usuario_id'];
+    $fechaActual = date("Y-m-d");
+    $usuarioQuery = mysqli_query($conn, "SELECT id, suscripcion FROM usuarios WHERE id = $idCookie");
+    $usuario = mysqli_fetch_array($usuarioQuery);
+    $suscripcion = $usuario['suscripcion'];
+    if ($suscripcion < $fechaActual) {
+        // Vencida
+        $_SESSION['message'] = "Debes tener una suscripción activa para acceder al contenido.";
+        $_SESSION['messageColor'] = "#dc3545";
+        header("Location: ?p=error&message=Debes%20tener%20una%20suscripción%20activa%20para%20acceder%20al%20contenido.");
+        exit();
+    }
+}
 if (isset($_GET['c'])) {
     $canal = $_GET['c'];
     $canalTipo;
