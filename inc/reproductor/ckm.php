@@ -73,7 +73,7 @@ echo '
         gaTrackerName: "MyPlayerInstance",
         height: "100%",
         width: "100%",
-        autoPlay: false,
+        autoPlay: true,
         muted: false,
         shakaConfiguration: {
             preferredAudioLanguage: "es-MX",
