@@ -27,13 +27,13 @@
 <?php
 $getUrl = base64_decode($_GET['s']);
 
-list($urlParte, $resto) = explode("&img=", $getUrl);
-list($imagenParte, $resto) = explode("&key=", $resto);
+//list($urlParte, $resto) = explode("&img=", $getUrl);
+list($imagenParte, $resto) = explode("&key=", $getUrl);
 list($keyParte, $key2Parte) = explode("&key2=", $resto);
 // Obtener las partes de la URL
-$urlParte = urldecode($urlParte);
+//$urlParte = urldecode($urlParte);
 // Obtener la imagen
-$img = urldecode($imagenParte);
+$urlParte = urldecode($imagenParte);
 // Obtener la key
 $key = urldecode($keyParte);
 // Obtener la key2
