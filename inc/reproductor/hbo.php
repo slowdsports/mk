@@ -26,7 +26,6 @@
 </style>
 <?php
 $getUrl = base64_decode($_GET['s']);
-echo $getUrl . "<br>";
 
 list($urlParte, $resto) = explode("&img=", $getUrl);
 list($imagenParte, $resto) = explode("&key=", $resto);
