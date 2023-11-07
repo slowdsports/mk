@@ -26,28 +26,26 @@
 </style>
 <?php
 $getUrl = base64_decode($_GET['s']);
-$params = explode("&", $getUrl);
-$s = "";
-$key = "";
-$key2 = "";
-foreach ($params as $param) {
-    list($nombre, $val) = explode("=", $param);
-    // Asignar los valores a las variables correspondientes según el nombre del parámetro
-    if ($nombre === "key") {
-        $key = $val;
-    } elseif ($nombre === "key2") {
-        $key2 = $val;
-    } else {
-        // Si el nombre del parámetro no es "key" ni "key2", se asume que es la primera parte de la URL
-        $s = $nombre . "=" . $val;
-    }
-}
+echo $getUrl . "<br>";
+
+list($urlParte, $resto) = explode("&img=", $getUrl);
+list($imagenParte, $resto) = explode("&key=", $resto);
+list($keyParte, $key2Parte) = explode("&key2=", $resto);
+// Obtener las partes de la URL
+$urlParte = urldecode($urlParte);
+// Obtener la imagen
+$img = urldecode($imagenParte);
+// Obtener la key
+$key = urldecode($keyParte);
+// Obtener la key2
+$key2 = urldecode($key2Parte);
 
 //echo $getUrl;
 echo '
 <script>
-var getURL = "' . $s . '";
+var getURL = "' . $urlParte . '";
 var getKEY = "' . $key . '";
+var getIMG = "' . $img . '";
 var getKEY2 = "' . $key2 . '";
 var getTYPE = 9;
 </script>'; ?>
