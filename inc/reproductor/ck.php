@@ -133,7 +133,7 @@ if ($canalTipo == 9) {
             // Vidgo Requiere Proxy
             if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")) {
                 // Validar localización
-                if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
+                if (isset($country) && $country !== "US") {
                     $proxy = "https://slowdus.herokuapp.com/";
                 } else {
                     $proxy = "";
