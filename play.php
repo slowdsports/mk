@@ -146,7 +146,7 @@ if (isset($_GET['title'])) {
                             $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='https://clarovideo.irtvhn.info?c=$canalAlt'";
                         } // Configurar los IZZI
                         elseif (strpos($canalUrl, "izzigo")) {
-                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='//izzigo.irtvhn.info?c=$canalAlt'";
+                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='//izzigo.irtvhn.info?c=$canalAlt'&proxy";
                         } elseif (isset($canalTipo) && isset($configurations[$canalTipo])) {
                             // Obtener el tipo de canal de la base de datos y verificar si existe en las configuraciones
                             $config = $configurations[$canalTipo];
