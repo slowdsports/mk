@@ -136,7 +136,7 @@ if ($canalTipo == 9) {
                 if (isset($country) && $country !== "US") {
                     $proxy = "https://slowdus.herokuapp.com/";
                 } else {
-                    $proxy = "";
+                    $proxy = "https://slowdus.herokuapp.com/";
                 }
                 $canalUrl = $proxy . $canalUrl;
             }
