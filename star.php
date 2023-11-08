@@ -1,4 +1,4 @@
-<?php  if (isset($country) && $country == "ES" || strpos($timezone, "Europe")) { $proxy = "https://slowdus.herokuapp.com/"; echo "Estás usando proxy en" . $country . " " . $timezone; } else { $proxy = ""; echo "No estás usando proxy en " .$country . " " . $timezone; } ?>
+<?php  if (isset($country) && $country == "ES" || strpos($timezone, "rope")) { $proxy = "https://slowdus.herokuapp.com/"; echo "Estás usando proxy en" . $country . " " . $timezone; } else { $proxy = ""; echo "No estás usando proxy en " .$country . " " . $timezone; } ?>
 <div class="section mt-2">
     <h2>Star+ <small>Eventos Programados</small></h2>
     <div id="eventos" class="row row-cols-2 row-cols-sm-2 row-cols-lg-3 gx-3 gx-md-4 mt-n2 mt-sm-0">
