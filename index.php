@@ -7,21 +7,32 @@ include('../inc/conn.php');
 session_start();
 // IP + País
 if (!isset($_SESSION['ip'])) {
-    $jsonResponse = file_get_contents("https://directory.cookieyes.com/api/v1/ip");
-    $data = json_decode($jsonResponse, true);
-    $ip = $data['ip'];
-    $country = $data['country'];
-    $country_name = $data['country_name'];
-    $region_code = $data['region_code'];
-    $_SESSION['ip'] = $ip;
-    $_SESSION['country'] = $country;
-    $_SESSION['country_name'] = $country_name;
-    $_SESSION['region_code'] = $region_code;
+    // Obtenemos IP
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        // Obtiene la primera dirección IP de la lista
+        $ipList = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        $ip = trim($ipList[0]);
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    // API
+    $geolocation = file_get_contents("https://ipinfo.io/{$ip}/json");
+    $geolocationData = json_decode($geolocation);
+    if ($geolocationData !== NULL && isset($geolocationData->country)) {
+        $country = $geolocationData->country;
+        $city = $geolocationData->city;
+        $timezone = $geolocationData->timezone;
+        // Variables de sesión
+        $_SESSION['ip'] = $ip;
+        $_SESSION['country'] = $country;
+        $_SESSION['city'] = $city;
+        $_SESSION['timezone'] = $timezone;
+    }    
 } else {
     $ip = $_SESSION['ip'];
     $country = $_SESSION['country'];
-    $country_name = $_SESSION['country_name'];
-    $region_code = $_SESSION['region_code'];
+    $city = $_SESSION['city'];
+    $timezone = $_SESSION['timezone'];
 }
 // Verificar cookies
 if (isset($_COOKIE['usuario_id'])) {

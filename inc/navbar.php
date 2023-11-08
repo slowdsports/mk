@@ -72,7 +72,7 @@ else {
                         <div class="text-muted">
                             <ion-icon name="location"></ion-icon>
                             <i class="flag <?= strtolower($country) ?>"></i>
-                            <?= $country_name ?> (<?= $region_code ?>)
+                            <?= $country ?> (<?= $city ?>)
                         </div>
                     </div>
                     <a href="javascript:;" class="close-sidebar-button" data-dismiss="modal">
