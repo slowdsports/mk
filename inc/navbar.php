@@ -61,14 +61,14 @@ else {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body p-0">
-                <?php if (isset($_SESSION['usuario_id'])) { ?>
+                <?php if (isset($_COOKIE['usuario_id'])) { ?>
                 <!-- profile box -->
                 <div class="profileBox">
                     <div class="image-wrapper">
                         <img src="../assets/img/account/brady-avatar.png" alt="image" class="imaged rounded">
                     </div>
                     <div class="in">
-                        <strong><?= ucfirst($_SESSION['usuario_nombre']) ?></strong>
+                        <strong><?= ucfirst($_COOKIE['usuario_nombre']) ?></strong>
                         <div class="text-muted">
                             <ion-icon name="location"></ion-icon>
                             <i class="flag <?= strtolower($country) ?>"></i>
@@ -310,8 +310,8 @@ else {
                 <a href="?p=preferencias" class="button">
                     <ion-icon name="settings-outline"></ion-icon>
                 </a>
-                <a href="<?= (!isset($_SESSION['usuario_id'])) ? "?p=login" : "?p=login&do=logout" ?>" class="button">
-                    <ion-icon name="log-<?= (!isset($_SESSION['id'])) ? "in" : "out" ?>-outline"></ion-icon>
+                <a href="<?= (!isset($_COOKIE['usuario_id'])) ? "?p=login" : "?p=login&do=logout" ?>" class="button">
+                    <ion-icon name="log-<?= (!isset($_COOKIE['id'])) ? "in" : "out" ?>-outline"></ion-icon>
                 </a>
             </div>
             <!-- * sidebar buttons -->
