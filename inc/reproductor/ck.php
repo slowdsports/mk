@@ -132,7 +132,13 @@ if ($canalTipo == 9) {
         if (strpos($canalUrl, "dazn-cdn") ||strpos($canalUrl, "livewwdazn") || strpos($canalUrl, "director.streaming") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.") || strpos($canalUrl, "vidgo.com")  || strpos($canalUrl, "tglmp") || strpos($canalUrl, "liveusp") || strpos($canalUrl, "live-nl-") || strpos($canalUrl, "upcbroadband") || strpos($canalUrl, "ssc-") || strpos($canalUrl, "latamvosliveclarovideo")) {
             // Vidgo Requiere Proxy
             if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")) {
-                $canalUrl = "https://slowdus.herokuapp.com/" . $canalUrl;
+                // Validar localización
+                if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
+                    $proxy = "https://slowdus.herokuapp.com/";
+                } else {
+                    $proxy = "";
+                }
+                $canalUrl = $proxy . $canalUrl;
             }
             // Encriptamos la URL
             $canalUrl = base64_encode($canalUrl); ?>
