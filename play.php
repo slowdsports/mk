@@ -3,8 +3,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 include('../inc/conn.php');
 
-$autorizados = array("HN", "CR", "SV", "GT", "NI", "PA");
-
 if (!in_array($country, $autorizados) && !isset($_SESSION['v3'])) {
     if (!isset($_COOKIE['usuario_id'])) {
         $_SESSION['message'] = "Por favor inicia sesión para acceder al contenido.";

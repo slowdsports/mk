@@ -5,6 +5,7 @@
 // BD
 include('../inc/conn.php');
 session_start();
+$autorizados = array("HN", "CR", "SV", "GT", "NI", "PA");
 // IP + País
 if (!isset($_SESSION['ip'])) {
     // Obtenemos IP
@@ -35,6 +36,10 @@ if (!isset($_SESSION['ip'])) {
     $city = $_SESSION['city'];
     $timezone = $_SESSION['timezone'];
     (isset($_GET['v3']) ? $_SESSION['v3'] : "");
+}
+// Redirigir APP especial y GEO detectado
+if (!in_array($country, $autorizados) && isset($_SESSION['v3'])) {
+    header('Location: ?p=blog');
 }
 // Verificar cookies
 if (isset($_COOKIE['usuario_id'])) {
