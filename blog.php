@@ -1,7 +1,7 @@
 <?= (!isset($_GET['id']) ? '' : include('inc/post.php')); ?>
 <div class="header-large-title">
     <h1 class="title">
-        Blog Deportivo
+        Blog Deportivo (<?=$country?>)
     </h1>
     <h4 class="subtitle">
         Las mejores noticias solo aquí
