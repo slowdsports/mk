@@ -36,7 +36,7 @@ if (!isset($_SESSION['ip'])) {
     (isset($_GET['v3']) ? $_SESSION['v3'] : "");
 }
 // Redirigir APP especial y GEO detectado
-if (isset($_GET['v3']) || isset($_SESSION['v3']) && !in_array($country, $autorizados)) {
+if (!in_array($country, $autorizados) && isset($_GET['v3']) || isset($_SESSION['v3'])) {
     echo "existe v3 y country " . $country;
     header("Location: ?p=blog");
     exit();
