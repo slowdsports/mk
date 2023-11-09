@@ -3,23 +3,27 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 include('../inc/conn.php');
 
-if(!isset($_COOKIE['usuario_id']) ) {
-    $_SESSION['message'] = "Por favor inicia sesión para acceder al contenido.";
-    $_SESSION['messageColor'] = "#dc3545";
-    header("Location: ?p=login");
-    exit();
-} else {
-    $idCookie = $_COOKIE['usuario_id'];
-    $fechaActual = date("Y-m-d");
-    $usuarioQuery = mysqli_query($conn, "SELECT id, suscripcion FROM usuarios WHERE id = $idCookie");
-    $usuario = mysqli_fetch_array($usuarioQuery);
-    $suscripcion = $usuario['suscripcion'];
-    if ($suscripcion < $fechaActual) {
-        // Vencida
-        $_SESSION['message'] = "Debes tener una suscripción activa para acceder al contenido.";
+$autorizados = array("HN", "CR", "SV", "GT", "NI", "PA");
+
+if (!in_array($country, $autorizados) && !isset($_SESSION['v3'])) {
+    if (!isset($_COOKIE['usuario_id'])) {
+        $_SESSION['message'] = "Por favor inicia sesión para acceder al contenido.";
         $_SESSION['messageColor'] = "#dc3545";
-        header("Location: ?p=error&message=Debes%20tener%20una%20suscripción%20activa%20para%20acceder%20al%20contenido.");
+        header("Location: ?p=login");
         exit();
+    } else {
+        $idCookie = $_COOKIE['usuario_id'];
+        $fechaActual = date("Y-m-d");
+        $usuarioQuery = mysqli_query($conn, "SELECT id, suscripcion FROM usuarios WHERE id = $idCookie");
+        $usuario = mysqli_fetch_array($usuarioQuery);
+        $suscripcion = $usuario['suscripcion'];
+        if ($suscripcion < $fechaActual) {
+            // Vencida
+            $_SESSION['message'] = "Debes tener una suscripción activa para acceder al contenido.";
+            $_SESSION['messageColor'] = "#dc3545";
+            header("Location: ?p=error&message=Debes%20tener%20una%20suscripción%20activa%20para%20acceder%20al%20contenido.");
+            exit();
+        }
     }
 }
 if (isset($_GET['c'])) {
@@ -131,7 +135,7 @@ if (isset($_GET['title'])) {
                         // Construir la URL del iframe con la configuración correspondiente
                         $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media *; autoplay' src='inc/reproductor/{$config[0]}?{$params}'";
                         echo "<iframe {$src}></iframe>";
-                    }  elseif (isset($_GET['s'])) {
+                    } elseif (isset($_GET['s'])) {
                         $config = $configurations['s'];
                         // Construir los parámetros para la URL del iframe
                         $params = implode("&", array_map(function ($param) {
@@ -147,7 +151,7 @@ if (isset($_GET['title'])) {
                         } // Configurar los IZZI
                         elseif (strpos($canalUrl, "izzigo")) {
                             // Validar localización
-                            if (isset($country) && $country !== "MX"|| $country !== "US") {
+                            if (isset($country) && $country !== "MX" || $country !== "US") {
                                 $proxy = "proxy";
                             } else {
                                 $proxy = "";

@@ -27,12 +27,14 @@ if (!isset($_SESSION['ip'])) {
         $_SESSION['country'] = $country;
         $_SESSION['city'] = $city;
         $_SESSION['timezone'] = $timezone;
+        (isset($_GET['v3']) ? $_SESSION['v3'] : "");
     }    
 } else {
     $ip = $_SESSION['ip'];
     $country = $_SESSION['country'];
     $city = $_SESSION['city'];
     $timezone = $_SESSION['timezone'];
+    (isset($_GET['v3']) ? $_SESSION['v3'] : "");
 }
 // Verificar cookies
 if (isset($_COOKIE['usuario_id'])) {
