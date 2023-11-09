@@ -3,8 +3,6 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 // BD
-include('../inc/conn.php');
-session_start();
 $autorizados = array("HN", "CR", "SV", "GT", "NI", "PA");
 // IP + País
 if (!isset($_SESSION['ip'])) {
@@ -38,11 +36,13 @@ if (!isset($_SESSION['ip'])) {
     (isset($_GET['v3']) ? $_SESSION['v3'] : "");
 }
 // Redirigir APP especial y GEO detectado
-if (isset($_SESSION['v3']) && !in_array($country, $autorizados)) {
+if (isset($_GET['v3']) || isset($_SESSION['v3']) && !in_array($country, $autorizados)) {
     echo "existe v3 y country " . $country;
     header("Location: ?p=blog");
     exit();
 }
+include('../inc/conn.php');
+session_start();
 // Verificar cookies
 if (isset($_COOKIE['usuario_id'])) {
     $usuario_id = $_COOKIE['usuario_id'];
