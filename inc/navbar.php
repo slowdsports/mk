@@ -2,7 +2,7 @@
 // Evitar la carga del navbar
 if (isset($_GET['p']) && $_GET['p'] == "notificaciones" ) {}
 else {
-    (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "error" ? $hiddeElements = "hidden" : "");
+    (isset($_GET['p']) && $_GET['p'] == "login" || $_GET['p'] == "error" || $_GET['p'] == "blog" ? $hiddeElements = "hidden" : "");
 ?>
 <!-- app footer -->
 <div class="<?=$hiddeElements?> appFooter">

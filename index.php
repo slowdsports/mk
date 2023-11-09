@@ -39,7 +39,8 @@ if (!isset($_SESSION['ip'])) {
 }
 // Redirigir APP especial y GEO detectado
 if (isset($_SESSION['v3']) && !in_array($country, $autorizados)) {
-    header('Location: ?p=blog');
+    echo "existe v3 y country " . $country;
+    header("Location: ?p=blog");
     exit();
 }
 // Verificar cookies
