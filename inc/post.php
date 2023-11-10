@@ -6,6 +6,7 @@ $jsonData = file_get_contents('blog.json');
 
 // Decodificar el JSON en un array asociativo
 $articles = json_decode($jsonData, true);
+//var_dump($articles);
 
 // Inicializar el artículo como un array vacío
 $article = [];
@@ -17,15 +18,21 @@ if (array_key_exists($id, $articles)) {
     $poster = $article['poster'];
     $date = $article['date'];
     $description = $article['description'];
+    $content = $article['content'];
     $image = $article['image'];
     $extraTitle = $article['extraTitle'];
     $extra = $article['extra'];
+    $video = $article['video'];
 }
 ?>
 
 <div class="blog-post">
     <div class="mb-2">
+        <?php if (isset($video)){ ?>
+        <video class="imaged square w-100" width="100%"controls autoplay muted src="<?=$video?>"></video>
+        <?php } else { ?>
         <img src="<?= $poster ?>" alt="image" class="imaged square w-100">
+        <?php }?>
     </div>
     <h1 class="title">
         <?= $title ?>
@@ -43,6 +50,9 @@ if (array_key_exists($id, $articles)) {
     <div class="post-body">
         <p>
             <?= $description ?>
+        </p>
+        <p>
+            <?= $content ?>
         </p>
         <img src="<?= $image ?>" alt="image">
         <h2>

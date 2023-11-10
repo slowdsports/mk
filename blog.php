@@ -14,7 +14,7 @@
             document.addEventListener("DOMContentLoaded", function () {
                 // Obtener el elemento div con id "posts"
                 const postsDiv = document.getElementById("posts");
-                let articleId = 1;
+                let articleId = 0;
                 // Hacer una solicitud para obtener el archivo JSON desde la URL
                 fetch("blog.json")
                     .then(response => response.json())
