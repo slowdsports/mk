@@ -24,7 +24,7 @@
                         blogDataArray.forEach(blogData => {
                             // Crear un div independiente con clase "col-6"
                             const colDiv = document.createElement("div");
-                            colDiv.className = "col-6";
+                            colDiv.className = "col-12";
                             postsDiv.appendChild(colDiv);
 
                             // Crear un div con clase "card product-card"
