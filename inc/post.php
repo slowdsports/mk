@@ -23,6 +23,7 @@ if (array_key_exists($id, $articles)) {
     $extraTitle = $article['extraTitle'];
     $extra = $article['extra'];
     $video = $article['video'];
+    $iframe = $article['iframe'];
 }
 ?>
 <script src="//ssl.p.jwpcdn.com/player/v/8.24.0/jwplayer.js"></script>
@@ -32,6 +33,10 @@ if (array_key_exists($id, $articles)) {
         <?php if (isset($video)) { ?>
             <div class="imaged square w-100">
                 <div style="border-radius:5px" id="player"></div>
+            </div>
+        <?php } elseif (isset($iframe)) { ?>
+            <div class="imaged square w-100">
+                <iframe width="100%" height="350px" style="border-radius:5px" src="<?=$iframe?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         <?php } else { ?>
             <img src="<?= $poster ?>" alt="image" class="imaged square w-100">
