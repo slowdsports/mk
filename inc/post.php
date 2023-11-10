@@ -25,14 +25,17 @@ if (array_key_exists($id, $articles)) {
     $video = $article['video'];
 }
 ?>
-
+<script src="//ssl.p.jwpcdn.com/player/v/8.24.0/jwplayer.js"></script>
+<script>jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
 <div class="blog-post">
     <div class="mb-2">
-        <?php if (isset($video)){ ?>
-        <video class="imaged square w-100" width="100%"controls autoplay muted src="<?=$video?>"></video>
+        <?php if (isset($video)) { ?>
+            <div class="imaged square w-100">
+                <div style="border-radius:5px" id="player"></div>
+            </div>
         <?php } else { ?>
-        <img src="<?= $poster ?>" alt="image" class="imaged square w-100">
-        <?php }?>
+            <img src="<?= $poster ?>" alt="image" class="imaged square w-100">
+        <?php } ?>
     </div>
     <h1 class="title">
         <?= $title ?>
@@ -74,3 +77,33 @@ if (array_key_exists($id, $articles)) {
 </div>
 
 <div class="divider mt-4 mb-3"></div>
+<script>
+    var playerInstance = jwplayer("player");
+    playerInstance.setup({
+        playlist: [
+            {
+                sources: [
+                    {
+                        default: false,
+                        type: "hls",
+                        file: "<?=$video?>",
+                        label: "0",
+                    },
+                ],
+            },
+        ],
+        height: "100%",
+        width: "100%",
+        aspectratio: "16:9",
+        stretching: "bestfit",
+        mediaid: "player",
+        mute: true,
+        autostart: true,
+        language: "es",
+        logo: {
+            file: "https://eduveel1.github.io/baleada/img/iRTVW_PLAYER.png",
+            hide: "false",
+            position: "top-left"
+        }
+    });
+</script>
