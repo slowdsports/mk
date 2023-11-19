@@ -37,6 +37,7 @@
                     $canalImg = $canal['canalImg'];
                     $canalNombre = $canal['fuenteNombre'];
                     $canalCategoria = $canal['canalCategoria'];
+                    $pais = $canal['paisNombre'];
                     ?>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 mycard <?= $canalCategoria ?>"
                         data-category="<?= $canalCategoria ?>">
@@ -44,6 +45,10 @@
                             <div class="card product-card liga-card canal-card">
                                 <div class="card-body">
                                     <center>
+                                    <h6 class="card-subtitle">
+                                        <i class="flag <?= $pais ?>"></i>
+                                        (<?= strtoupper($pais) ?>)
+                                    </h6>
                                         <img width="48px" src="https://i.ibb.co/w0qg9JF/trans.png"
                                             style="background-image: url('../assets/img/canales/<?= $canalImg ?>.png'); background-size: contain; background-repeat: no-repeat;"
                                             class="image" alt="product image" />
