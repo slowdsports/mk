@@ -98,7 +98,7 @@ if (isset($_GET['title'])) {
                         '9' => ["ck.php", ['c', 'f']],
                         '6' => ["bm.php", ['c', 'f']],
                         '1' => ["hls.php", ['c', 'f']],
-                        '2' => ["", []] // For $canalTipo == 2, handle $canalUrl separately
+                        '2' => ["frame.php", ['c', 'f']] // For $canalTipo == 2, handle $canalUrl separately
                     ];
 
                     // Obtener el tipo de configuración
