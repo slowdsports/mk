@@ -8,7 +8,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || empty($_SERVER['HTTP_REFERER'])) {
     exit();
 }
 $canal = $_GET['c'];
-include('../../inc/conn.php');
+include('../../../inc/conn.php');
 // Fuente Alterna
 if (isset($_GET['f']) && $_GET['f'] !== null) {
     $canal = ($_GET['f']);
