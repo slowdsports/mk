@@ -32,8 +32,18 @@ if (isset($_GET['f']) && $_GET['f'] !== null) {
 
 // Especiales
 $sandbox;
-if (strpos($canalUrl, "bletcheanta") || strpos($canalUrl, "tele") || strpos($canalUrl, "sports")) {
+$kw = ["bletcheanta", "tele", "sports"];
+if (kwPresente($canalUrl, $kw)) {
     $sandbox = "sandbox='allow-same-origin allow-scripts'";
+}
+
+function kwPresente($string, $keywords) {
+    foreach ($keywords as $keyword) {
+        if (strpos($string, $keyword) !== false) {
+            return true;
+        }
+    }
+    return false;
 }
 ?>
 <style>
