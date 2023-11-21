@@ -27,7 +27,7 @@ else {
             <ion-icon name="football-outline"></ion-icon>
         </div>
     </a>
-    <a href="?p=notificaciones" class="item <?= ($_GET['p'] == "notificaciones" ? "active" : "") ?>">
+    <a href="?p=notificaciones" class="item hidden <?= ($_GET['p'] == "notificaciones" ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
             <span class="badge badge-danger">5</span>
@@ -43,7 +43,7 @@ else {
             <ion-icon name="radio-outline"></ion-icon>
         </div>
     </a>
-    <a href="?p=cuenta" class="item <?= ($_GET['p'] == "cuenta" ? "active" : "") ?>">
+    <a href="?p=cuenta" class="item hidden <?= ($_GET['p'] == "cuenta" ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="people-outline"></ion-icon>
         </div>
@@ -275,7 +275,7 @@ else {
                         </div>
                     </li>
                     <li>
-                        <a href="?p=notificaciones" class="item">
+                        <a href="?p=notificaciones" class="item hidden">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                             </div>
@@ -286,7 +286,7 @@ else {
                         </a>
                     </li>
                     <li>
-                        <a href="?p=cuenta" class="item">
+                        <a href="?p=cuenta" class="item hidden">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="person-outline"></ion-icon>
                             </div>
