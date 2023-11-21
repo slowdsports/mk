@@ -162,6 +162,16 @@ $ligaNombre = $result['ligaNombre'];
                         <div class="card card-body">
                             <ul class="listview link-listview">
                                 <?php
+                                if ($index == 11816830):
+                                ?>
+                                <li>
+                                    <a class="justify-content-center" href="?p=vix">
+                                        <i class="flag mx"></i>
+                                            Vix + (Recomendado)
+                                    </a>
+                                </li>
+                                <?php endif ?>
+                                <?php
                                 // HBO M
                                 if ($result['hbo'] === null || $result['hbo'] === "") {
                                     // No mostramos nada
