@@ -79,20 +79,20 @@ $ligaNombre = $result['ligaNombre'];
                 $vix = $result['vix'];
                 $custId = getCustomLink($index);
                 // Channels Image
-                $ciSearch = $result['canal_canal1'];
+                $ciSearch = $result['id_canal1'];
                 if ($ciSearch == null || $ciSearch == "") {
-                    $ciSearch = $result['canal_canal2'];
+                    $ciSearch = $result['id_canal2'];
                     if ($ciSearch == null || $ciSearch == "") {
-                        $ciSearch = $result['canal_canal3'];
+                        $ciSearch = $result['id_canal3'];
                     }
                     if ($ciSearch == null || $ciSearch == "") {
-                        $ciSearch = $result['canal_canal4'];
+                        $ciSearch = $result['id_canal4'];
                     }
                     if ($ciSearch == null || $ciSearch == "") {
-                        $ciSearch = $result['canal_canal5'];
+                        $ciSearch = $result['id_canal5'];
                     }
                     if ($ciSearch == null || $ciSearch == "") {
-                        $ciSearch = $result['canal_canal6'];
+                        $ciSearch = $result['id_canal6'];
                     }
                 }
                 $ciQuery = mysqli_query($conn, "SELECT canalImg FROM canales WHERE canalId IN (SELECT canal FROM fuentes WHERE fuenteId = '$ciSearch')");
