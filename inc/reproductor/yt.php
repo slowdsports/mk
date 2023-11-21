@@ -120,7 +120,7 @@ if (!empty($video_id)) {
         player.play();
         // Pausar después de 2 segundos (2000 milisegundos)
         setTimeout(() => {
-            player.pause();
+            //player.pause();
         }, 2000);
     </script>
 </body>
