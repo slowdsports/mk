@@ -28,7 +28,7 @@ var dd = '<?=$dd?>';
 var hh = '<?=$hh?>';
 var m = '<?=$m?>';
 
-var textLive = "<p style='position: absolute;' class='live-text'>En Vivo <ion-icon class='faa-flash animated' name='ellipse'></ion-icon></p>";
+var textLive = "<p class='live-text'>En Vivo <ion-icon class='faa-flash animated' name='ellipse'></ion-icon></p>";
 var textEnd = "Finalizó";
 
 
