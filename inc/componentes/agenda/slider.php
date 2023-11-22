@@ -146,7 +146,7 @@
                                     var hh = '<?= $hh_1 ?>';
                                     var m = '<?= $m_1 ?>';
 
-                                    var textLive = "<p style='position: absolute;' class='live-text'>En Vivo <ion-icon class='faa-flash animated' name='ellipse'></ion-icon></p>";
+                                    var textLive = "<p class='live-text'>En Vivo <ion-icon class='faa-flash animated' name='ellipse'></ion-icon></p>";
                                     var textEnd = "Finalizó";
 
 
@@ -209,7 +209,7 @@
                                             }
                                         }
                                     }, //1000
-                                        5000);
+                                        1000);
                                 </script>
                             </div>
                         </div>
