@@ -18,6 +18,16 @@
     <link rel="stylesheet" href="assets/css/toastify.min.css">
     <link rel="stylesheet" href="assets/css/<?= ($_GET['p'] == "home" || !isset($_GET['p']) ? "slider" : "events" ) ?>.css">
 </head>
+<style>
+    /* Estilos para botones con enfoque visual */
+    a:focus, div:focus, .section:focus, .product-card:focus, ul>li:focus {
+    outline: 2px solid #6366f1!important;
+    }
+    div.row a:focus {
+        outline: none;
+        box-shadow: 2px #6366f1;
+    }
+</style>
 
 <body>
     <!-- loader -->
