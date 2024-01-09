@@ -22,7 +22,7 @@ $hh = substr($fecha, 11, 2);
 $m = substr($fecha, 14, 2);
 ?>
 <script>
-var yyyy = 2023;
+var yyyy = 2024;
 var mm = '<?=$mm-1?>';
 var dd = '<?=$dd?>';
 var hh = '<?=$hh?>';

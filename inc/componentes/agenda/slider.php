@@ -140,7 +140,7 @@
                                 </div>
                                 <p class="lead counter cntdwn-<?= $index ?>"></p>
                                 <script>
-                                    var yyyy = 2023;
+                                    var yyyy = 2024;
                                     var mm = '<?= $mm_1 - 1 ?>';
                                     var dd = '<?= $dd_1 ?>';
                                     var hh = '<?= $hh_1 ?>';
