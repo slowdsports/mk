@@ -117,7 +117,11 @@ if (isset($_GET['title'])) {
                             // Validar la URL antes de mostrarla en el iframe
                             if (filter_var($decodedIfr, FILTER_VALIDATE_URL)) {
                                 // Si la URL es válida, mostrarla en el iframe
-                                $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='{$decodedIfr}'";
+                                if (isset($_GET['sandbox'])) {
+                                    $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' sandbox='allow-scripts allow-same-origin' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='{$decodedIfr}'";
+                                } else {
+                                    $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='{$decodedIfr}'";
+                                }
                                 echo "<iframe {$src}></iframe>";
                             } else {
                                 // Si la URL no es válida, mostrar un mensaje de error o redirigir a una página de error
