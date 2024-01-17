@@ -130,12 +130,12 @@ if ($canalTipo == 9) {
     } else {
         // Requieren JW
         if (strpos($canalUrl, "dazn-cdn") ||strpos($canalUrl, "livewwdazn") || strpos($canalUrl, "director.streaming") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.") || strpos($canalUrl, "vidgo.com")  || strpos($canalUrl, "tglmp") || strpos($canalUrl, "liveusp") || strpos($canalUrl, "live-nl-") || strpos($canalUrl, "upcbroadband") || strpos($canalUrl, "ssc-") || strpos($canalUrl, "cvatt") || strpos($canalUrl, "latamvosliveclarovideo")) {
+            // DAZN Prueba
+            if (strpos($canalUrl, "dazn") || strpos($canalUrl, "livedazn") || strpos($canalUrl, "daznedge")) {
+                $proxy = "https://scrongwe.onrender.com/";
+            }
             // Vidgo Requiere Proxy
-            if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")|| strpos($canalUrl, "dazn")) {
-                // DAZN Prueba
-                if (strpos($canalUrl, "dazn") || strpos($canalUrl, "livedazn") || strpos($canalUrl, "daznedge")) {
-                    $proxy = "https://scrongwe.onrender.com/";
-                }
+            if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")) {
                 // Validar localización
                 if (isset($country) && $country !== "US") {
                     $proxy = "https://slowdus.herokuapp.com/";
