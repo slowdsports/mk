@@ -133,7 +133,7 @@ if ($canalTipo == 9) {
             // Vidgo Requiere Proxy
             if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")|| strpos($canalUrl, "dazn")) {
                 // DAZN Prueba
-                if (strpos($canalUrl, "dazn")) {
+                if (strpos($canalUrl, "dazn") || strpos($canalUrl, "livedazn") || strpos($canalUrl, "daznedge")) {
                     $proxy = "https://scrongwe.onrender.com/";
                 }
                 // Validar localización
