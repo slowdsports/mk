@@ -134,7 +134,7 @@ if ($canalTipo == 9) {
             if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")|| strpos($canalUrl, "dazn")) {
                 // DAZN Prueba
                 if (strpos($canalUrl, "dazn")) {
-                    $proxy = "https://slowd.herokuapp.com/";
+                    $proxy = "https://scrongwe.onrender.com/";
                 }
                 // Validar localización
                 if (isset($country) && $country !== "US") {
