@@ -131,16 +131,16 @@ if ($canalTipo == 9) {
         // Requieren JW
         if (strpos($canalUrl, "dazn-cdn") ||strpos($canalUrl, "livewwdazn") || strpos($canalUrl, "director.streaming") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.") || strpos($canalUrl, "vidgo.com")  || strpos($canalUrl, "tglmp") || strpos($canalUrl, "liveusp") || strpos($canalUrl, "live-nl-") || strpos($canalUrl, "upcbroadband") || strpos($canalUrl, "ssc-") || strpos($canalUrl, "cvatt") || strpos($canalUrl, "latamvosliveclarovideo")) {
             // Vidgo Requiere Proxy
-            if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")) {
+            if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")|| strpos($canalUrl, "dazn")) {
+                // DAZN Prueba
+                if (strpos($canalUrl, "dazn")) {
+                    $proxy = "https://slowd.herokuapp.com/";
+                }
                 // Validar localización
                 if (isset($country) && $country !== "US") {
                     $proxy = "https://slowdus.herokuapp.com/";
                 } else {
                     $proxy = "https://slowdus.herokuapp.com/";
-                }
-                // DAZN Prueba
-                if (strpos($canalUrl, "dazn")) {
-                    $proxy = "https://slowd.herokuapp.com/";
                 }
                 $canalUrl = $proxy . $canalUrl;
             }
