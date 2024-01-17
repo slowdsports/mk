@@ -138,10 +138,11 @@ if ($canalTipo == 9) {
                 } else {
                     $proxy = "https://slowdus.herokuapp.com/";
                 }
+                // DAZN Prueba
+                if (strpos($canalUrl, "dazn")) {
+                    $proxy = "https://slowd.herokuapp.com/";
+                }
                 $canalUrl = $proxy . $canalUrl;
-            } // DAZN Prueba
-            elseif (strpos($canalUrl, "dazn")) {
-                $proxy = "https://slowd.herokuapp.com/";
             }
             // Encriptamos la URL
             $canalUrl = base64_encode($canalUrl); ?>
