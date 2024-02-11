@@ -127,14 +127,14 @@ $ligaNombre = $result['ligaNombre'];
                         <div class="card product-card">
                             <div class="main-event">
                                 <div class="league">
-                                    <img src="https://api.sofascore.app/api/v1/unique-tournament/<?= $getLiga ?>/image/dark"
+                                    <img src="https://api.codetabs.com/v1/proxy/?quest=https://api.sofascore.app/api/v1/unique-tournament/<?= $getLiga ?>/image/dark"
                                         alt="League" />
                                     <!-- <p class="<?= $index ?>"><?= ucfirst($dia) ?></p> -->
                                     <p class="cntdwn-<?= $index ?>"></p>
                                 </div>
                                 <div class="match">
                                     <div class="team">
-                                        <img width="60px" src="https://api.sofascore.app/api/v1/team/<?= $local_id ?>/image"
+                                        <img width="60px" src="https://api.codetabs.com/v1/proxy/?quest=https://api.sofascore.app/api/v1/team/<?= $local_id ?>/image"
                                             alt="" />
                                         <h4>
                                             <?= ucfirst($local) ?>
@@ -145,7 +145,7 @@ $ligaNombre = $result['ligaNombre'];
                                     </div>
                                     <div class="team">
                                         <img width="60px"
-                                            src="https://api.sofascore.app/api/v1/team/<?= $visitante_id ?>/image" alt="" />
+                                            src="https://api.codetabs.com/v1/proxy/?quest=https://api.sofascore.app/api/v1/team/<?= $visitante_id ?>/image" alt="" />
                                         <h4>
                                             <?= ucfirst($visitante) ?>
                                         </h4>

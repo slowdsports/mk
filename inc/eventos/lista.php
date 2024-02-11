@@ -29,7 +29,7 @@
                         <div class="card product-card liga-card">
                             <div class="card-body">
                                 <center>
-                                    <img src="https://api.sofascore.app/api/v1/unique-tournament/<?= $liga_id ?>/image" class="image liga-img" alt="<?= $result['ligaNombre'] ?>" />
+                                    <img src="https://api.codetabs.com/v1/proxy/?quest=https://api.sofascore.app/api/v1/unique-tournament/<?= $liga_id ?>/image" class="image liga-img" alt="<?= $result['ligaNombre'] ?>" />
                                     <h2 class="title text-center"><?= $result['ligaNombre'] ?></h2>
                                 </center>
                             </div>

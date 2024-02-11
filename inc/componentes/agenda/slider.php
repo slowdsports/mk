@@ -118,7 +118,7 @@
                             <div class="card">
                                 <div class="mini-league">
                                     <img width="25px"
-                                        src="https://api.sofascore.app/api/v1/unique-tournament/<?= $liga_id ?>/image/dark" alt="">
+                                        src="https://api.codetabs.com/v1/proxy/?quest=https://api.sofascore.app/api/v1/unique-tournament/<?= $liga_id ?>/image/dark" alt="">
                                     <h5>
                                         <?= $liga ?>
                                     </h5>
@@ -126,13 +126,13 @@
                                 <div class="main-event">
                                     <div class="match">
                                         <div class="team">
-                                            <img src="https://api.sofascore.app/api/v1/team/<?= $local_id ?>/image" class="image"
+                                            <img src="https://api.codetabs.com/v1/proxy/?quest=https://api.sofascore.app/api/v1/team/<?= $local_id ?>/image" class="image"
                                                 alt="image">
                                             <h4><?= ucfirst($local) ?></h4>
                                         </div>
                                         <h6 class="vs">vs</h6>
                                         <div class="team">
-                                            <img src="https://api.sofascore.app/api/v1/team/<?= $visitante_id ?>/image"
+                                            <img src="https://api.codetabs.com/v1/proxy/?quest=https://api.sofascore.app/api/v1/team/<?= $visitante_id ?>/image"
                                                 class="image" alt="image">
                                             <h4><?= ucfirst($visitante) ?></h4>
                                         </div>
