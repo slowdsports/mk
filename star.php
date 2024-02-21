@@ -15,190 +15,133 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
         <div id="eventos" class="row">
             <!-- <script src="inc/eventos/star.js"></script> -->
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    // Eliminar container
-                    var basuraContain = document.getElementById('appCapsule');
-                    basuraContain.classList.remove("container");
-                    var jsonUrl = "https://corsproxy.io/?https://elcdn.realintic.online/eventos.json";
-                    var eventosContainer = document.getElementById("eventos");
+                function eventos() {
+                    var x = Math.random().toString(36).substring(7);
 
-                    // Sortear
-                    function compararStatus(a, b) {
-                        var statusOrden = {
-                            "EN VIVO": 0,
-                            "FINALIZADO": 2
-                        };
-                        if (a.status in statusOrden && b.status in statusOrden) {
-                            return statusOrden[a.status] - statusOrden[b.status];
-                        } else if (a.status in statusOrden) {
-                            return -1;
-                        } else if (b.status in statusOrden) {
-                            return 1;
-                        } else if (a.status.match(/^\d{2}:\d{2}$/) && b.status.match(/^\d{2}:\d{2}$/)) {
-                            // Ambos están en formato HH:MM
-                            var [aHours, aMinutes] = a.status.split(':').map(Number);
-                            var [bHours, bMinutes] = b.status.split(':').map(Number);
-                            if (aHours !== bHours) {
-                                return aHours - bHours;
-                            } else {
-                                return aMinutes - bMinutes;
-                            }
-                        } else {
-                            return 0;
-                        }
-                    }
+                    $.ajax({
+                        url: "https://maindota2.co/json/datos.json?" + x,
+                        //url: "datos.json?" + x,
+                        type: "get",
+                        success: function (arr) {
+                            // Ordenar los eventos según su status
+                            arr.sort(function (a, b) {
+                                if (a.status === "EN VIVO") return -1;
+                                if (b.status === "EN VIVO") return 1;
 
-                    function procesarURL(url) {
-                        if (url.trim() === "#") {
-                            return url;
-                        }
+                                // Ordenar por formato "hora:minuto" si es aplicable
+                                if (a.status.match(/^\d{1,2}:\d{2}$/) && b.status.match(/^\d{1,2}:\d{2}$/)) {
+                                    return new Date("1970-01-01T" + a.status) - new Date("1970-01-01T" + b.status);
+                                }
 
-                        var parteDespreciable = "/embed/eventos/?r=";
-                        var urlSinParteDespreciable = url.replace(parteDespreciable, "");
-                        var desencriptada = atob(urlSinParteDespreciable);
-                        // Intenta reemplazar el primer regex
-                        if (/https:\/\/\S*\/star_jwp\.html\?get=/.test(desencriptada)) {
-                            desencriptada = desencriptada.replace(/https:\/\/\S*\/star_jwp\.html\?get=/, "");
-                        } else if (/^https:\/\/cdn\.sfndeportes\.net\/star_wspp\?get=/.test(desencriptada)) {
-                            // Si el primer regex no coincide, intenta el segundo regex
-                            desencriptada = desencriptada.replace(/^https:\/\/cdn\.sfndeportes\.net\/star_wspp\?get=/, "");
-                        }
-                        //console.log(desencriptada)
+                                // Si no es EN VIVO ni formato "hora:minuto", ordenar por FINALIZADO
+                                if (a.status === "FINALIZADO") return 1;
+                                if (b.status === "FINALIZADO") return -1;
 
-                        return desencriptada;
-                    }
+                                // Otros casos
+                                return 0;
+                            });
+                            var content = '';
 
-                    function encriptarContenido(eventoUrl) {
-                        if (eventoUrl.trim() !== "#") {
-                            var partes = eventoUrl.split("&");
-                            var urlEncriptada = partes
-                                .map(function (part) {
-                                    if (part.startsWith("key=") || part.startsWith("key2=") || part.startsWith("img=")) {
-                                        var igualIndex = part.indexOf("=");
-                                        var clave = part.substring(0, igualIndex + 1);
-                                        var valor = part.substring(igualIndex + 1);
+                            for (var i = 0; i < arr.length; i++) {
 
-                                        if (clave === "img=") {
-                                            return clave + valor;
-                                        } else {
-                                            return clave + btoa(valor);
-                                        }
-                                    }
-                                    return part;
-                                })
-                                .join("&");
+                                var obj = arr[i];
 
-                            var partesURL = urlEncriptada.split("&");
-                            var proxy = "<?= $proxy ?>";
-                            var primeraParte = partesURL[0];
-                            var primeraParteEncriptada = btoa(proxy + primeraParte);
-                            urlEncriptada = urlEncriptada.replace(primeraParte, primeraParteEncriptada);
-                            return urlEncriptada;
-                        }
-                        return eventoUrl;
-                    }
+                                // Integrar lógicas aquí
+                                var url = obj['url'];
+                                if (url !== "#") {
+                                    url = url.replace("/embed/eventos/?r=", "")
+                                    var decodedUrl = atob(url);
+                                    // Obtener el proxy
+                                    var proxy = "<?= $proxy ?>";
+                                    // Hacer split en partes usando "&"
+                                    var urlParts = decodedUrl.split("&");
+                                    // Ordenar las partes
+                                    var m3u8 = proxy + urlParts[0];
+                                    console.log(m3u8);
+                                    // Encriptar la imagen a MD5
+                                    var imagen = urlParts[1] + "&" + urlParts[2] + "&" + urlParts[3];
+                                    imagen = imagen.replace("img=", "");
+                                    var key1 = urlParts[4];
+                                    key1 = key1.replace("key=", "")
+                                    var key2 = urlParts[5];
+                                    key2 = key2.replace("key2=", "");
+                                    console.log(key1)
+                                    // Reemplazar la URL
+                                    url = btoa(m3u8) + "&img=" + imagen + "&key=" + btoa(key1) + "&key2=" + btoa(key2);
+                                }
 
-                    function crearTarjeta(evento) {
-                        var card = document.createElement("div");
-                        card.className = "col-6 col-sm-4 col-md-3 evento";
-                        var eventoUrl = procesarURL(evento.url);
-                        var urlEncriptada = encriptarContenido(eventoUrl);
 
-                        var contenidoExtra = "";
-                        var contenidoIcon = "";
-                        var contenidoFlash = "";
-
-                        if (evento.status === "EN VIVO") {
-                            contenidoExtra = 'En Vivo';
-                            contenidoIcon = "ellipse";
-                            contenidoFlash = "faa-flash animated";
-                            contenidoColor = "light live-text";
-                        } else if (evento.status === "FINALIZADO") {
-                            contenidoExtra = 'Finalizado';
-                            contenidoIcon = "time-outline";
-                            contenidoColor = "primary";
-                        } else {
-                            contenidoExtra = `${evento.status}`;
-                            contenidoIcon = "hourglass-outline";
-                            contenidoColor = "success";
-                        }
-
-                        var $remaining = "";
-
-                        if (evento.status.includes(":")) {
-                            var eventTime = new Date();
-                            var eventParts = evento.status.split(":");
-                            eventTime.setHours(parseInt(eventParts[0], 10));
-                            eventTime.setMinutes(parseInt(eventParts[1], 10));
-                            eventTime.setSeconds(0);
-
-                            function updateCountdown() {
-                                var now = new Date();
-                                var timeDiff = eventTime - now;
-                                var hours = Math.floor(timeDiff / (1000 * 60 * 60));
-                                var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                                var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-                                card.innerHTML = `
-                                <a href="?p=tv&r=${urlEncriptada}&title=${evento.title}" aria-label="${evento.title}">
-                                    <div class="card product-card">
-                                        <div class="card-body">
-                                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/${evento.img}/scale?width=900&aspectRatio=1.78&format=jpeg" class="image" alt="${evento.league}">
-                                            <h2 class="title">
-                                                ${evento.title}
-                                            </h2>
-                                            <div class="price">
-                                                <ion-icon class='${contenidoFlash}' name='${contenidoIcon}'></ion-icon>
-                                                ${hours}h ${minutes}m ${seconds}s
-                                            </div>
-                                            <a href="?p=tv&r=${urlEncriptada}&title=${evento.title}" aria-label="${evento.league}" class="btn btn-sm btn-${contenidoColor} btn-block">
-                                                ${contenidoExtra}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>`;
-                                setTimeout(updateCountdown, 1000);
-                            }
-
-                            updateCountdown();
-                        } else {
-                            $remaining = `${evento.status}`;
-                        }
-
-                        card.innerHTML = `
-                        <a href="?p=tv&r=${urlEncriptada}&title=${evento.title}" aria-label="${evento.league}">                        
+                                if (obj['status'] == "EN VIVO")
+                                    content += `
+                        <div class="col-6 col-md-4 col-lg-3 evento">
+                            <a href="?p=tv&r=${url}">
                             <div class="card product-card">
+                                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/${obj['img']}/scale?width=900&aspectRatio=1.78&format=jpeg" alt="${obj['title']}" class="image">
                                 <div class="card-body">
-                                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/${evento.img}/scale?width=900&aspectRatio=1.78&format=jpeg" class="image" alt="${evento.league}">
-                                    <h2 class="title">
-                                        ${evento.title}
-                                    </h2>
-                                    <p class="text">
-                                        ${evento.league}
-                                    </p>
-                                    <a href="?p=tv&r=${urlEncriptada}&title=${evento.title}" aria-label="${evento.league}" class="btn btn-sm btn-${contenidoColor} btn-block">
-                                        <ion-icon class='${contenidoFlash}' name='${contenidoIcon}'></ion-icon>
-                                        ${evento.status}
-                                    </a>
+                                <h2 class="title">${obj['title']}</h2>
+                                <p class="text">${obj['league']}</p>
+                                <a href="?p=tv&r=${url}" class="btn btn-sm btn-light live-text btn-block">
+                                    <ion-icon class="faa-flash animated md hydrated" name="ellipse" role="img" aria-label="ellipse"></ion-icon>
+                                    ${obj['status']}
+                                </a>
                                 </div>
                             </div>
-                        </a>`;
+                            </a>
+                        </div>
+                        `;
 
-                        return card;
-                    }
+                                else if (obj['status'] == "FINALIZADO")
+                                    content += `
+                        <div class="col-6 col-md-4 col-lg-3 evento">
+                            <a href="?p=tv&r=${url}">
+                            <div class="card product-card">
+                                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/${obj['img']}/scale?width=900&aspectRatio=1.78&format=jpeg" alt="${obj['title']}" class="image">
+                                <div class="card-body">
+                                <h2 class="title">${obj['title']}</h2>
+                                <p class="text">${obj['league']}</p>
+                                <a href="?p=tv&r=${url}" class="btn btn-sm btn-light live-text btn-block">
+                                    <ion-icon class="md hydrated" name="time-outline" role="img" aria-label="time-outline"></ion-icon>
+                                    ${obj['status']}
+                                </a>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        `;
 
-                    fetch(jsonUrl)
-                        .then((response) => response.json())
-                        .then((data) => {
-                            data.sort(compararStatus);
-                            data.forEach((evento) => {
-                                var tarjeta = crearTarjeta(evento);
-                                eventosContainer.appendChild(tarjeta);
-                            });
-                        })
-                        .catch((error) => {
-                            console.error("Error al obtener el JSON:", error);
-                        });
-                });
+                                else
+                                    content += `
+                        <div class="col-6 col-md-4 col-lg-3 evento">
+                            <a>
+                            <div class="card product-card">
+                                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/${obj['img']}/scale?width=900&aspectRatio=1.78&format=jpeg" alt="${obj['title']}" class="image">
+                                <div class="card-body">
+                                <h2 class="title">${obj['title']}</h2>
+                                <p class="text">${obj['league']}</p>
+                                <a href="?p=tv&r=${url}" class="disabled btn btn-sm btn-light live-text btn-block">
+                                    <ion-icon class="md hydrated" name="calendar-outline" role="img" aria-label="calendar-outline"></ion-icon>
+                                    <span class="t">${obj['status']}</span> hs
+                                </a>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        `;
+                            }
+
+                            $("#eventos").html(content);
+
+                            guardaHorario();
+                            dT();
+                        }
+                    })
+                }
+
+                eventos();
+
+                window.setInterval(function () {
+                    eventos();
+                }, 60000);
             </script>
         </div>
     </div>
