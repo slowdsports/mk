@@ -14,8 +14,8 @@
                 var x = Math.random().toString(36).substring(7);
 
                 $.ajax({
-                    //url: "https://api.codetabs.com/v1/proxy/?quest=https://maindota2.co/json/nba.json?" + x,
-                    url: "datos.json?" + x,
+                    url: "https://api.codetabs.com/v1/proxy/?quest=https://maindota2.co/json/nba.json?" + x,
+                    //url: "datos.json?" + x,
                     type: "get",
                     success: function (arr) {
                         // Ordenar los eventos según su status
