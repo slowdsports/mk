@@ -19,7 +19,7 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                     var x = Math.random().toString(36).substring(7);
 
                     $.ajax({
-                        url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.app/star-plus/eventos.json?" + x,
+                        url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.nu/tv2//star-plus/eventos.json?" + x,
                         //url: "https://corsproxy.io/?https://maindota2.co/json/datos.json?" + x,
                         //url: "datos.json?" + x,
                         type: "get",
@@ -52,13 +52,15 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                                 if (url !== "#") {
                                     url = url.replace("/embed/eventos/?r=", "")
                                     var decodedUrl = atob(url);
+                                    // Reemplazar
+                                    var replacedUrl = decodedUrl.replace(/.*\.(?:html|php)\?get=/, "");
                                     // Obtener el proxy
                                     var proxy = "<?= $proxy ?>";
                                     // Hacer split en partes usando "&"
-                                    var urlParts = decodedUrl.split("&");
+                                    var urlParts = replacedUrl.split("&");
                                     // Ordenar las partes
                                     var m3u8 = proxy + urlParts[0];
-                                    console.log(m3u8);
+                                    //console.log(m3u8);
                                     // Encriptar la imagen a MD5
                                     var imagen = urlParts[1] + "&" + urlParts[2] + "&" + urlParts[3];
                                     imagen = imagen.replace("img=", "");
@@ -66,7 +68,7 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                                     key1 = key1.replace("key=", "")
                                     var key2 = urlParts[5];
                                     key2 = key2.replace("key2=", "");
-                                    console.log(key1)
+                                    //console.log(key1)
                                     // Reemplazar la URL
                                     url = btoa(m3u8) + "&img=" + imagen + "&key=" + btoa(key1) + "&key2=" + btoa(key2);
                                 }
