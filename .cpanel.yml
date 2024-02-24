@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    #- export DEPLOYPATH=/home/u4396178/irtvhn.info/v3/
-    - export DEPLOYPATH=/home/megaaxmg/maindota2.co/iraffle/mk/
+    - export DEPLOYPATH=/home/u4396178/irtvhn.info/v3/
+    #- export DEPLOYPATH=/home/megaaxmg/maindota2.co/iraffle/mk/
     - /bin/cp -R * $DEPLOYPATH
     #- /bin/rsync -a --exclude 'conn.php' public/ $DEPLOYPATH
