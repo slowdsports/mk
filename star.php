@@ -19,9 +19,9 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                     var x = Math.random().toString(36).substring(7);
 
                     $.ajax({
-                        //url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.app/star-plus/eventos.json?" + x,
+                        url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.app/star-plus/eventos.json?" + x,
                         //url: "https://corsproxy.io/?https://maindota2.co/json/datos.json?" + x,
-                        url: "datos.json?" + x,
+                        //url: "datos.json?" + x,
                         type: "get",
                         success: function (arr) {
                             // Ordenar los eventos según su status
