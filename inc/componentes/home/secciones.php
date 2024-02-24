@@ -5,7 +5,7 @@
         $totalGames = mysqli_num_rows($queryQty);
         if ($totalGames > 0) { ?>
             <div class="col-6 col-sm-4 col-md-3 mycard">
-                <a href="?p=eventos&tipo=football">
+                <a href="?p=eventos&tipo=football" tabindex="1">
                     <div class="card product-card">
                         <div class="card-body">
                             <img width="48px" height="48px" src="../assets/img/futbol.svg" class="image"
@@ -23,7 +23,7 @@
         $totalGames = mysqli_num_rows($queryQty);
         if ($totalGames > 0) { ?>
             <div class="col-6 col-sm-4 col-md-3 mycard">
-                <a href="?p=eventos&tipo=basketball">
+                <a href="?p=eventos&tipo=basketball" tabindex="2">
                     <div class="card product-card">
                         <div class="card-body">
                             <img width="48px" height="48px" src="../assets/img/basket.svg" class="image"

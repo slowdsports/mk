@@ -20,11 +20,19 @@ else {
     <a href="?p=home" class="item <?= (!isset($_GET['p']) || $_GET['p'] == "home" ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="home-outline"></ion-icon>
+            <strong>Inicio</strong>
         </div>
     </a>
     <a href="?p=eventos&tipo=football" class="item <?= ($_GET['p'] == "football" ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="football-outline"></ion-icon>
+            <strong>Fútbol</strong>
+        </div>
+    </a>
+    <a href="?p=nbalp" class="item <?= ($_GET['p'] == "nbalp" ? "active" : "") ?>">
+        <div class="col">
+            <ion-icon name="basketball-outline"></ion-icon>
+            <strong>NBA</strong>
         </div>
     </a>
     <a href="?p=notificaciones" class="item hidden <?= ($_GET['p'] == "notificaciones" ? "active" : "") ?>">
@@ -36,11 +44,25 @@ else {
     <a href="?p=tv" class="item <?= ($_GET['p'] == "tv" || $_GET['p'] == "iptv"  ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="tv-outline"></ion-icon>
+            <strong>TV</strong>
         </div>
     </a>
     <a href="?p=radio" class="item <?= ($_GET['p'] == "radio" ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="radio-outline"></ion-icon>
+            <strong>Radio</strong>
+        </div>
+    </a>
+    <a href="?p=star" class="item <?= ($_GET['p'] == "star" ? "active" : "") ?>">
+        <div class="col">
+            <ion-icon name="star-outline"></ion-icon>
+            <strong>Star+</strong>
+        </div>
+    </a>
+    <a href="?p=vix" class="item <?= ($_GET['p'] == "vix" ? "active" : "") ?>">
+        <div class="col">
+            <ion-icon name="logo-vue"></ion-icon>
+            <strong>Vix+</strong>
         </div>
     </a>
     <a href="?p=cuenta" class="item hidden <?= ($_GET['p'] == "cuenta" ? "active" : "") ?>">

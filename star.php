@@ -19,7 +19,7 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                     var x = Math.random().toString(36).substring(7);
 
                     $.ajax({
-                        url: "https://maindota2.co/json/datos.json?" + x,
+                        url: "https://corsproxy.io/?https://maindota2.co/json/datos.json?" + x,
                         //url: "datos.json?" + x,
                         type: "get",
                         success: function (arr) {
