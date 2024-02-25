@@ -162,7 +162,7 @@ if (isset($_GET['title'])) {
                     } else {
                         // Configurar los claro
                         if (strpos($canalUrl, "claro") || strpos($canalUrl, "cvatt")) {
-                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='https://latamvosliveclarovideo.irtvhn.info?c=$canalAlt'";
+                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='https://clarovideo.irtvhn.info?c=$canalAlt'";
                         } // Configurar los IZZI
                         elseif (strpos($canalUrl, "izzigo")) {
                             // Validar localización
