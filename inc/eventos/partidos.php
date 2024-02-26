@@ -173,7 +173,7 @@ $ligaNombre = $result['ligaNombre'];
                                 <?php endif ?>
                                 <?php
                                 // HBO M
-                                if ($result['hbo'] === null || $result['hbo'] === "" && $result['liga'] !== 7) {
+                                if ($result['hbo'] === null || $result['hbo'] === "" && $getLiga !== 7) {
                                     // No mostramos nada
                                 } else {
                                     ?>
