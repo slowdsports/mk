@@ -9,7 +9,6 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
     $_SESSION['color'] = "28a745";
 }
 ?>
-<iframe class="embed-responsive" id="player" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
 <div class="section full mt-2 mb-2">
     <h2>Star+ <small>Eventos Programados</small></h2>
     <div class="wide-block pt-2 pb-2">
@@ -18,8 +17,6 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
             <script>
                 function eventos() {
                     var x = Math.random().toString(36).substring(7);
-                    var iframe = document.getElementById('player');
-                    iframe.style.display = "none";
 
                     $.ajax({
                         url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.nu/tv2//star-plus/eventos.json?" + x,
@@ -80,13 +77,13 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                                 if (obj['status'] == "EN VIVO")
                                     content += `
                         <div class="col-6 col-md-4 col-lg-3 evento">
-                            <a href="javascript:void(0);" onclick="cargarReproductor('${url}')">
+                            <a href="?p=tv&r=${url}">
                             <div class="card product-card">
                                 <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/${obj['img']}/scale?width=900&aspectRatio=1.78&format=jpeg" alt="${obj['title']}" class="image">
                                 <div class="card-body">
                                 <h2 class="title">${obj['title']}</h2>
                                 <p class="text">${obj['league']}</p>
-                                <a href="javascript:void(0);" onclick="cargarReproductor('${url}')" class="btn btn-sm btn-light live-text btn-block">
+                                <a href="?p=tv&r=${url}" class="btn btn-sm btn-light live-text btn-block">
                                     <ion-icon class="faa-flash animated md hydrated" name="ellipse" role="img" aria-label="ellipse"></ion-icon>
                                     ${obj['status']}
                                 </a>
@@ -99,13 +96,13 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                                 else if (obj['status'] == "FINALIZADO")
                                     content += `
                         <div class="col-6 col-md-4 col-lg-3 evento">
-                            <a href="javascript:void(0);" onclick="cargarReproductor('${url}')">
+                            <a href="?p=tv&r=${url}">
                             <div class="card product-card">
                                 <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/${obj['img']}/scale?width=900&aspectRatio=1.78&format=jpeg" alt="${obj['title']}" class="image">
                                 <div class="card-body">
                                 <h2 class="title">${obj['title']}</h2>
                                 <p class="text">${obj['league']}</p>
-                                <a href="javascript:void(0);" onclick="cargarReproductor('${url}')" class="btn btn-sm btn-light live-text btn-block">
+                                <a href="?p=tv&r=${url}" class="btn btn-sm btn-light live-text btn-block">
                                     <ion-icon class="md hydrated" name="time-outline" role="img" aria-label="time-outline"></ion-icon>
                                     ${obj['status']}
                                 </a>
@@ -144,14 +141,6 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                 }
 
                 eventos();
-                // Agrega una nueva función para cargar el reproductor en el iframe
-                function cargarReproductor(url) {
-                    var iframe = document.getElementById('player');
-                    // Actualiza el src del iframe con la URL del evento
-                    iframe.src = "?p=tv&r=" + url;
-                    // Mostrar el iframe
-                    iframe.style.display = "block";
-                }
 
                 window.setInterval(function () {
                     eventos();
