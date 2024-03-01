@@ -41,7 +41,8 @@ $query = mysqli_query($conn, "SELECT * FROM fuentes WHERE fuenteId='" . $canal .
 $result = mysqli_fetch_assoc($query);
 $source = $result['canalUrl'];
 if (strpos($source, "vidgo.com") || strpos($source, "stvacdn") || strpos($source, "izzigo.")) {
-    $source = base64_encode("https://slowdus.herokuapp.com/" . $source);
+    //$source = base64_encode("https://slowdus.herokuapp.com/" . $source);
+    $source = base64_encode("https://cors-proxy.elfsight.com/" . $source);
 } else {
     $source = base64_encode($result['canalUrl']);
 }
