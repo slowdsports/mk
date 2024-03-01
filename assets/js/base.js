@@ -506,7 +506,7 @@ function cambiarFuentesImagenes(modo) {
         var rutaOriginal = imagen.getAttribute('src'); // Almacena la ruta original en un atributo de datos
         var rutaModificada = modo === 'oscuro' ? rutaOriginal + '/dark' : rutaOriginal;
 
-        imagen.src = rutaModificada; // Establece la nueva ruta de la imagen
+        //imagen.src = rutaModificada; // Establece la nueva ruta de la imagen
     });
 }
 
