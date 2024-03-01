@@ -134,9 +134,11 @@ if ($canalTipo == 9) {
             if (strpos($canalUrl, "vidgo.com") || strpos($canalUrl, "stvacdn") || strpos($canalUrl, "izzigo.")) {
                 // Validar localización
                 if (isset($country) && $country !== "US") {
-                    $proxy = "https://slowdus.herokuapp.com/";
+                    //$proxy = "https://slowdus.herokuapp.com/";
+                    $proxy = "https://cors-proxy.elfsight.com/";
                 } else {
-                    $proxy = "https://slowdus.herokuapp.com/";
+                    //$proxy = "https://slowdus.herokuapp.com/";
+                    $proxy = "https://cors-proxy.elfsight.com/";
                 }
                 $canalUrl = $proxy . $canalUrl;
             }
