@@ -1,6 +1,7 @@
 <?php
 if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
-    $proxy = "https://slowdus.herokuapp.com/";
+    //$proxy = "https://slowdus.herokuapp.com/";
+    $proxy = "https://cors-proxy.elfsight.com/";
     $_SESSION['message'] = "Estás usando proxy en " . $timezone . ". Si crees que es un error, contáctanos mediante el chat";
     $_SESSION['color'] = "28a745";
 } else {
