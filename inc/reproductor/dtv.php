@@ -21,7 +21,8 @@
     $canal = $_GET['c'];
     $query = mysqli_query($conn, "SELECT * FROM canales WHERE canalId='" . $canal . "'");
     $result = mysqli_fetch_assoc($query);
-    $base = "https://slowdus.herokuapp.com/";
+    //$base = "https://slowdus.herokuapp.com/";
+    $base = "https://cors-proxy.elfsight.com/";
     $source = base64_encode($base.$result['canalUrl']);
     $key = $result['key'];
     $key2 = $result['key2'];
