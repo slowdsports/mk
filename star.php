@@ -10,7 +10,13 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
     $_SESSION['color'] = "28a745";
 }
 ?>
-<iframe class="embed-responsive" id="player" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<style>
+    .playing {
+        max-height: 400px;
+        overflow-y: auto;        
+    }
+</style>
+<iframe class="embed-responsive hidden" id="player" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
 <div class="section full mt-2 mb-2">
     <h2>Star+ <small>Eventos Programados</small></h2>
     <div class="wide-block pt-2 pb-2">
@@ -20,7 +26,7 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                 function eventos() {
                     var x = Math.random().toString(36).substring(7);
                     var iframe = document.getElementById('player');
-                    iframe.style.display = "none";
+                    //iframe.classList.add("hidden");
 
                     $.ajax({
                         url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.nu/tv2//star-plus/eventos.json?" + x,
@@ -148,10 +154,12 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                 // Agrega una nueva función para cargar el reproductor en el iframe
                 function cargarReproductor(url) {
                     var iframe = document.getElementById('player');
+                    var playing = document.getElementById('eventos');
                     // Actualiza el src del iframe con la URL del evento
                     iframe.src = "?p=tv&r=" + url;
                     // Mostrar el iframe
-                    iframe.style.display = "block";
+                    iframe.classList.remove("hidden");
+                    playing.classList.add("playing");
                 }
 
                 window.setInterval(function () {
