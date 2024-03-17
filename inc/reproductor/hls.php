@@ -52,7 +52,7 @@ if (isset($_GET['f']) && $_GET['f'] !== null) {
     $source = base64_encode($result['canalUrl']);
 }
 // validar tipo de repro
-if (strpos(base64_decode($source)), "d50d12b5") {
+if (strpos(base64_decode($source)), "d50d12b5")) {
     echo '
     <script>
     var playerInstance = jwplayer("player");
