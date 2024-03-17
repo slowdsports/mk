@@ -66,7 +66,7 @@ if (strpos(base64_decode($source)), "d50d12b5") {
             });
             </script>
     ';
-}
+} else {
 echo '
     <script>
     var player = new Clappr.Player({
@@ -99,3 +99,4 @@ echo '
     //}, 2000);
     </script>
     ';
+}
