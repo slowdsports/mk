@@ -51,7 +51,7 @@ var textEnd = "Finalizó";
 
     // Find the distance between now an the count down date
     // GMT/UTC Adjustment at the end of the function. 0 = GMT/UTC+0; 1 = GMT/UTC+1.
-    var distance<?=$index?> = countDownDate<?=$index?> - now<?=$index?> - (3600000 * 0);
+    var distance<?=$index?> = countDownDate<?=$index?> - now<?=$index?> - (3600000 * 2);
 
     // Time calculations for days, hours, minutes and seconds
     var days<?=$index?> = Math.floor(distance<?=$index?> / (1000 * 60 * 60 * 24));
