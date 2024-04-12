@@ -9,6 +9,18 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
     $_SESSION['message'] = "No estás usando proxy en " . $timezone . ". Si crees que es un error, contáctanos mediante el chat";
     $_SESSION['color'] = "28a745";
 }
+// Generar
+$json_url = 'https://deportestvhd2.com/star.json';
+// Obtener el contenido del JSON desde la URL
+$json_content = file_get_contents($json_url);
+// Verificar si la solicitud fue exitosa
+if ($json_content !== false) {
+    // Guardar el contenido en un archivo llamado "starbr.json"
+    file_put_contents('datos.json', $json_content);
+    echo 'El archivo "starbr.json" se ha creado exitosamente.';
+} else {
+    echo 'Error al obtener el contenido del JSON desde la URL.';
+}
 ?>
 <style>
     .playing {
@@ -29,9 +41,9 @@ if (isset($country) && $country == "ES" || strpos($timezone, "rope")) {
                     //iframe.classList.add("hidden");
 
                     $.ajax({
-                        url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.nu/tv2//star-plus/eventos.json?" + x,
+                        //url: "https://api.codetabs.com/v1/proxy/?quest=https://futbollibre.nu/tv2//star-plus/eventos.json?" + x,
                         //url: "https://corsproxy.io/?https://maindota2.co/json/datos.json?" + x,
-                        //url: "datos.json?" + x,
+                        url: "datos.json?" + x,
                         type: "get",
                         success: function (arr) {
                             // Ordenar los eventos según su status
