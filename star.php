@@ -17,9 +17,8 @@ $json_content = file_get_contents($json_url);
 if ($json_content !== false) {
     // Guardar el contenido en un archivo llamado "starbr.json"
     file_put_contents('datos.json', $json_content);
-    echo 'El archivo "starbr.json" se ha creado exitosamente.';
 } else {
-    echo 'Error al obtener el contenido del JSON desde la URL.';
+    echo 'Error al obtener el contenido del JSON, por favor comuníquelo al admin';
 }
 ?>
 <style>
