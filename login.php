@@ -9,6 +9,7 @@ if ($_GET['do'] == "logout") {
     // Eliminar las cookies de usuario
     setcookie("usuario_id", "", time() - 3600, "/");
     setcookie("usuario_rol", "", time() - 3600, "/");
+    setcookie("usuario_nombre", "", time() - 3600, "/");
     $_SESSION['message'] = "Has cerrado sesión satisfactoriamente. Esperamos verte pronto nuevamente";
     $_SESSION['messageColor'] = "#4044ee";
     header("Location: ?p=home&logout=success");
@@ -16,7 +17,7 @@ if ($_GET['do'] == "logout") {
 
 }
 // Redirigir si ya hay sesión
-if (isset($_SESSION['usuario_id'])) {
+if (isset($_SESSION['usuario_id']) && isset($_COOKIE['usuario_id'])) {
     $_SESSION['message'] = "Ya has iniciado sesión previamente";
     $_SESSION['messageColor'] = "#4044ee";
     header("Location: ?p=cuenta");
