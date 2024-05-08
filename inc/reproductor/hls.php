@@ -5,8 +5,6 @@
 <script src='//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js'></script>
 <script src='//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js'></script>
 <script src="//ewwink.github.io/clappr-youtube-plugin/clappr-youtube-plugin.js"></script>
-<script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
-<script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
 <style>
     body {
         background: #000;
@@ -35,9 +33,11 @@
 </style>
 <div id="player"></div>
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-include('../../../inc/conn.php');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+include('../conn.php');
+// ADS
+include('../ads/intersticial.php');
 
 // Fuente Alterna
 if (isset($_GET['f']) && $_GET['f'] !== null) {
@@ -51,23 +51,6 @@ if (isset($_GET['f']) && $_GET['f'] !== null) {
     $result = mysqli_fetch_array($canales);
     $source = base64_encode($result['canalUrl']);
 }
-// validar tipo de repro
-$basevalid = base64_decode($source);
-if (strpos($basevalid, "d50d12b5")) {
-    echo '
-    <script>
-    var playerInstance = jwplayer("player");
-            playerInstance.setup({
-                file: atob("' . $source . '"),
-                width : "100%",
-                height : "100%",
-                aspectratio: "16:9",
-                cast: {},
-                sharing: {}
-            });
-            </script>
-    ';
-} else {
 echo '
     <script>
     var player = new Clappr.Player({
@@ -93,11 +76,10 @@ echo '
         autoPlay: true,
         muted: false
     });
-    //player.play();
+    player.play();
     // Pausar después de 2 segundos (2000 milisegundos)
-    //setTimeout(() => {
-    //    player.pause();
-    //}, 2000);
+    setTimeout(() => {
+        player.pause();
+    }, 2000);
     </script>
     ';
-}
