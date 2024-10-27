@@ -66,7 +66,7 @@
             }
             // Sección de Canales
             // Leer datos desde el archivo JSON
-            $jsonData = file_get_contents('../canales.json');
+            $jsonData = file_get_contents('../json/canales.json');
 
             // Sección de Canales
             if (isset($_GET['p']) && $_GET['p'] == "tv") {

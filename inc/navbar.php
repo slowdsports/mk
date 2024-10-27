@@ -47,24 +47,6 @@ else {
             <strong>TV</strong>
         </div>
     </a>
-    <a href="?p=radio" class="item <?= ($_GET['p'] == "radio" ? "active" : "") ?>">
-        <div class="col">
-            <ion-icon name="radio-outline"></ion-icon>
-            <strong>Radio</strong>
-        </div>
-    </a>
-    <a href="?p=star" class="item <?= ($_GET['p'] == "star" ? "active" : "") ?>">
-        <div class="col">
-            <ion-icon name="star-outline"></ion-icon>
-            <strong>Star+</strong>
-        </div>
-    </a>
-    <a href="?p=vix" class="item <?= ($_GET['p'] == "vix" ? "active" : "") ?>">
-        <div class="col">
-            <ion-icon name="logo-vue"></ion-icon>
-            <strong>Vix+</strong>
-        </div>
-    </a>
     <a href="?p=cuenta" class="item hidden <?= ($_GET['p'] == "cuenta" ? "active" : "") ?>">
         <div class="col">
             <ion-icon name="people-outline"></ion-icon>

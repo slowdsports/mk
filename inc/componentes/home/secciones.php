@@ -1,4 +1,5 @@
 <div class="section mt-2">
+    <div class="section-title mb-1">Secciones</div>
     <div class="row">
         <?php
         $queryQty = mysqli_query($conn, "SELECT * FROM partidos WHERE tipo='football'");
@@ -11,7 +12,7 @@
                             <img width="48px" height="48px" src="../assets/img/futbol.svg" class="image"
                                 alt="product image">
                             <h2 class="title text-center">Fútbol</h2>
-                            <p class="text text-center">PREMIUM</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -29,7 +30,7 @@
                             <img width="48px" height="48px" src="../assets/img/basket.svg" class="image"
                                 alt="product image">
                             <h2 class="title text-center">Basket</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -46,7 +47,7 @@
                         <div class="card-body">
                             <img width="48px" height="48px" src="../assets/img/nfl.svg" class="image" alt="product image">
                             <h2 class="title text-center">NFL</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -59,7 +60,7 @@
                     <div class="card-body">
                         <img width="48px" height="48px" src="../assets/img/tv.svg" class="image" alt="product image">
                         <h2 class="title text-center">TV</h2>
-                        <p class="text text-center">PREMIUM</p>
+                        <p class="text text-center"></p>
                     </div>
                 </div>
             </a>
@@ -71,7 +72,7 @@
                     <div class="card-body">
                         <img width="48px" height="48px" src="../assets/img/radio.svg" class="image" alt="product image">
                         <h2 class="title text-center">Radio</h2>
-                        <p class="text text-center">GRATIS</p>
+                        <p class="text text-center"></p>
                     </div>
                 </div>
             </a>
@@ -87,7 +88,7 @@
                         <div class="card-body">
                             <img width="48px" height="48px" src="../assets/img/mlb.svg" class="image" alt="product image">
                             <h2 class="title text-center">Baseball</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -104,7 +105,7 @@
                         <div class="card-body">
                             <img width="48px" height="48px" src="../assets/img/ufc.svg" class="image" alt="product image">
                             <h2 class="title text-center">UFC</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -122,7 +123,7 @@
                             <img width="48px" height="48px" src="../assets/img/formula1.svg" class="image"
                                 alt="product image">
                             <h2 class="title text-center">F1</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -140,7 +141,7 @@
                             <img width="48px" height="48px" src="../assets/img/motogp.svg" class="image"
                                 alt="product image">
                             <h2 class="title text-center">MotoGP</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -157,7 +158,7 @@
                         <div class="card-body">
                             <img width="48px" height="48px" src="../assets/img/tenis.svg" class="image" alt="product image">
                             <h2 class="title text-center">Tennis</h2>
-                            <p class="text text-center">PREMIUM</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -174,7 +175,7 @@
                         <div class="card-body">
                             <img width="48px" height="48px" src="../assets/img/nhl.svg" class="image" alt="product image">
                             <h2 class="title text-center">NHL</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>
@@ -192,7 +193,7 @@
                             <img width="48px" height="48px" src="../assets/img/balonmano.svg" class="image"
                                 alt="product image">
                             <h2 class="title text-center">Balonmano</h2>
-                            <p class="text text-center">GRATIS</p>
+                            <p class="text text-center"></p>
                         </div>
                     </div>
                 </a>

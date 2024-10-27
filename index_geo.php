@@ -1,8 +1,46 @@
 <!-- App Capsule -->
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 // BD
+$autorizados = array("HN", "CR", "SV", "GT", "NI", "PA");
+// IP + País
+if (!isset($_SESSION['ip'])) {
+    // Obtenemos IP
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        // Obtiene la primera dirección IP de la lista
+        $ipList = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        $ip = trim($ipList[0]);
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    // API
+    $geolocation = file_get_contents("https://ipinfo.io/{$ip}/json");
+    $geolocationData = json_decode($geolocation);
+    if ($geolocationData !== NULL && isset($geolocationData->country)) {
+        $country = $geolocationData->country;
+        $city = $geolocationData->city;
+        $timezone = $geolocationData->timezone;
+        // Variables de sesión
+        $_SESSION['ip'] = $ip;
+        $_SESSION['country'] = $country;
+        $_SESSION['city'] = $city;
+        $_SESSION['timezone'] = $timezone;
+        (isset($_GET['v3']) ? $_SESSION['v3'] : "");
+    }    
+} else {
+    $ip = $_SESSION['ip'];
+    $country = $_SESSION['country'];
+    $city = $_SESSION['city'];
+    $timezone = $_SESSION['timezone'];
+    (isset($_GET['v3']) ? $_SESSION['v3'] : "");
+}
+// Redirigir APP especial y GEO detectado
+if (!in_array($country, $autorizados) && isset($_GET['v3']) || isset($_SESSION['v3'])) {
+    echo "existe v3 y country " . $country;
+    header("Location: ?p=blog");
+    exit();
+}
 include('../inc/conn.php');
 session_start();
 // Verificar cookies
@@ -19,6 +57,10 @@ if (isset($_COOKIE['usuario_id'])) {
 if ($_GET['p'] !== "login") {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
 }
+// if (isset($_GET['p']) && $_GET['p'] == "tv" && isset($_GET['c']) || isset($_GET['evento']) || isset($_GET['r']) || isset($_GET['s']) || isset($_GET['f'])) {
+//     include('play.php');
+//     exit();
+// }
 // Header
 include('inc/header.php');
 ?>
