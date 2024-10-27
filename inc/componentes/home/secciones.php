@@ -199,5 +199,29 @@
                 </a>
             </div>
         <?php } ?>
+
+        <div class="col-6 col-sm-4 col-md-3 mycard">
+            <a href="?p=star">
+                <div class="card product-card">
+                    <div class="card-body">
+                        <img width="48px" height="48px" src="../assets/img/disneyplus.svg" class="image" alt="product image">
+                        <h2 class="title text-center">Disney+</h2>
+                        <p class="text text-center"></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 mycard">
+            <a href="?p=max">
+                <div class="card product-card">
+                    <div class="card-body">
+                        <img width="48px" height="48px" src="../assets/img/max.svg" class="image" alt="product image">
+                        <h2 class="title text-center">Max</h2>
+                        <p class="text text-center"></p>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
