@@ -19,6 +19,11 @@ if (isset($_COOKIE['usuario_id'])) {
 if ($_GET['p'] !== "login") {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
 }
+// Reproductor
+if (isset($_GET['p']) && $_GET['p'] == "tv" && isset($_GET['f'])) {
+    include('play.php');
+    exit();
+}
 // Header
 include('inc/header.php');
 ?>

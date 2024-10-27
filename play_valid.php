@@ -1,5 +1,29 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
 include('../inc/conn.php');
+
+if (!in_array($country, $autorizados) && !isset($_SESSION['v3'])) {
+    if (!isset($_COOKIE['usuario_id'])) {
+        $_SESSION['message'] = "Por favor inicia sesión para acceder al contenido.";
+        $_SESSION['messageColor'] = "#dc3545";
+        header("Location: ?p=login");
+        exit();
+    } else {
+        $idCookie = $_COOKIE['usuario_id'];
+        $fechaActual = date("Y-m-d");
+        $usuarioQuery = mysqli_query($conn, "SELECT id, suscripcion FROM usuarios WHERE id = $idCookie");
+        $usuario = mysqli_fetch_array($usuarioQuery);
+        $suscripcion = $usuario['suscripcion'];
+        if ($suscripcion < $fechaActual) {
+            // Vencida
+            $_SESSION['message'] = "Debes tener una suscripción activa para acceder al contenido.";
+            $_SESSION['messageColor'] = "#dc3545";
+            header("Location: ?p=error&message=Debes%20tener%20una%20suscripción%20activa%20para%20acceder%20al%20contenido.");
+            exit();
+        }
+    }
+}
 if (isset($_GET['c'])) {
     $canal = $_GET['c'];
     $canalTipo;
@@ -35,6 +59,14 @@ if (isset($_GET['c'])) {
         }
     }
 }
+// Verificar tipo
+if (empty($canalTipo)) {
+    $canalTipo = 'default';
+}
+// iframes
+if (isset($_GET['title'])) {
+    $canalNombre = $_GET['title'];
+}
 ?>
 <style>
     body {
@@ -55,34 +87,29 @@ if (isset($_GET['c'])) {
                     $configurations = [
                         'r' => ["star.php", ['r', 'key', 'key2', 'img']],
                         's' => ["hbo.php", ['s', 'key', 'key2']],
+                        'nbalp' => ["nbalp.php", ['id', 'img']],
                         'adult' => ["adult.php", []],
                         'nba' => ["", ['ifr']],
                         'nfl' => ["", ['ifr']],
                         'mlb' => ["", ['ifr']],
                         'evento' => ["", ['ifr']],
                         'hls' => ["hls.php", ['c']],
-                        '13' => ["v1x.php", ['c', 'f']],
-                        '12' => ["izzi.php", ['c', 'f']],
                         '11' => ["ckm.php", ['c', 'f']],
-                        '10' => ["twitch.php", ['c', 'f']],
+                        '12' => ["mplus.php", ['c', 'f']],
                         '9' => ["ck.php", ['c', 'f']],
-                        '8' => ["pluto.php", ['c', 'f']],
-                        '7' => ["sl2.php", ['c', 'f']],
                         '6' => ["bm.php", ['c', 'f']],
-                        '5' => ["tdt.php", ['c', 'f']],
-                        '4' => ["pc.php", ['c', 'f']],
+                        '1' => ["hls.php", ['c', 'f']],
                         '3' => ["yt.php", ['c', 'f']],
-                        '2' => ["frame.php", ['c', 'f']],
-                        '1' => ["hls.php", ['c', 'f']]
+                        '2' => ["frame.php", ['c', 'f']] // For $canalTipo == 2, handle $canalUrl separately
                     ];
 
                     // Obtener el tipo de configuración
                     if (isset($_GET['ifr']) || isset($_GET['evento'])) {
-                        // NBA LP
+                        // NBA LP Old
                         if (isset($_GET["nbalp"])) {
                             $idFrame = $_GET["nbalp"];
                             $src = "//irtvhn.info/nba.php?id=" . $idFrame;
-                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow-encrypted-media src='$src'";
+                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='$src'";
                             echo "<iframe {$src}></iframe>";
 
                         } else {
@@ -91,11 +118,15 @@ if (isset($_GET['c'])) {
                             // Validar la URL antes de mostrarla en el iframe
                             if (filter_var($decodedIfr, FILTER_VALIDATE_URL)) {
                                 // Si la URL es válida, mostrarla en el iframe
-                                $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='{$decodedIfr}'";
+                                if (isset($_GET['sandbox'])) {
+                                    $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' sandbox='allow-scripts allow-same-origin' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='{$decodedIfr}'";
+                                } else {
+                                    $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='{$decodedIfr}'";
+                                }
                                 echo "<iframe {$src}></iframe>";
                             } else {
                                 // Si la URL no es válida, mostrar un mensaje de error o redirigir a una página de error
-                                $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='?p=404'";
+                                $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='ruta/a/pagina/de/error'";
                                 echo "<iframe {$src}></iframe>";
                             }
                         }
@@ -108,6 +139,7 @@ if (isset($_GET['c'])) {
                         // Construir la URL del iframe con la configuración correspondiente
                         $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media *; autoplay' src='inc/reproductor/{$config[0]}?{$params}'";
                         echo "<iframe {$src}></iframe>";
+
                     } elseif (isset($_GET['s'])) {
                         $config = $configurations['s'];
                         // Construir los parámetros para la URL del iframe
@@ -117,14 +149,29 @@ if (isset($_GET['c'])) {
                         // Construir la URL del iframe con la configuración correspondiente
                         $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media *; autoplay' src='inc/reproductor/{$config[0]}?{$params}'";
                         echo "<iframe {$src}></iframe>";
+
+                    } elseif (isset($_GET['nbalp'])) {
+                        $config = $configurations['nbalp'];
+                        // Construir los parámetros para la URL del iframe
+                        $params = implode("&", array_map(function ($param) {
+                            return isset($_GET[$param]) ? "{$param}={$_GET[$param]}" : "";
+                        }, $config[1]));
+                        // Construir la URL del iframe con la configuración correspondiente
+                        $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media *; autoplay' src='inc/reproductor/{$config[0]}?{$params}'";
+                        echo "<iframe {$src}></iframe>";
                     } else {
-                        // Configurar los claro && Flow
+                        // Configurar los claro
                         if (strpos($canalUrl, "claro") || strpos($canalUrl, "cvatt")) {
-                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='//clarovideo.futbolhonduras24.com?c=$canalAlt'";
-                        }
-                        // Configurar los IZZI
+                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='https://clarovideo.irtvhn.info?c=$canalAlt'";
+                        } // Configurar los IZZI
                         elseif (strpos($canalUrl, "izzigo")) {
-                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='//izzigo.futbolhonduras24.com?c=$canalAlt'";
+                            // Validar localización
+                            if (isset($country) && $country !== "MX" || $country !== "US") {
+                                $proxy = "proxy";
+                            } else {
+                                $proxy = "";
+                            }
+                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow='encrypted-media' src='//izzigo.irtvhn.info?c=$canalAlt&$proxy'";
                         } elseif (isset($canalTipo) && isset($configurations[$canalTipo])) {
                             // Obtener el tipo de canal de la base de datos y verificar si existe en las configuraciones
                             $config = $configurations[$canalTipo];
@@ -138,7 +185,7 @@ if (isset($_GET['c'])) {
                             $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow-encrypted-media src='inc/reproductor/{$config[0]}?{$params}'";
                         } else {
                             // Manejar el caso por defecto o mostrar un error si el tipo de canal no es válido
-                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow-encrypted-media src='inc/reproductor/ck.php'";
+                            $src = "id='embed-player' class='embed-responsive-item' width='100%' height='100%' frameborder='0' scrolling='no' allowfullscreen allow-encrypted-media src='inc/reproductor/ck.php?error'";
                         }
 
                         // Imprimir el iframe
